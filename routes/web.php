@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +21,20 @@ Route::get('/', function () {
 
 Route::get('/admin', function(){
     return view('admins.index');
-});
+})->middleware('auth:user,student');
 
 Route::get('/admin/tabungan', function(){
     return view('admins.tabungan.index');
 });
 
-
 Route::get('/berita', function(){
     return view('admins.posts');
 });
+
+
+Route::get('/login', function(){
+    return view('login.index');
+})->middleware('guest')->name('login');
+
+Route::post('postlogin', [LoginController::class, 'logManage'])->name('postLogin');
+Route::post('/logout', [LoginController::class, 'logout']);
