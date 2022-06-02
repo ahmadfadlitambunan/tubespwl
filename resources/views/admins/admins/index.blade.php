@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 @extends('layouts.main')
 
 
@@ -62,4 +60,3 @@
     </div>
 </div>
 @endsection
->>>>>>> ba7510e9ec692d04a955d6370e667ff0e6967273
