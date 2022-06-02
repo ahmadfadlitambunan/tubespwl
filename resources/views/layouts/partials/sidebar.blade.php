@@ -24,39 +24,88 @@
           <span>Berita</span></a>
   </li>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider">
 
-  <!-- Heading -->
-  <div class="sidebar-heading">
-      Management
-  </div>
+  {{-- Level User Admin --}}
+  @if(Auth::guard('user')->user())
+        @if(Auth::guard('user')->user()->level === "admin")
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Management
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-database"></i>
+                <span>Pengelolaan Data</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="buttons.html">Siswa</a>
+                    <a class="collapse-item" href="buttons.html">Tabungan</a>
+                    <a class="collapse-item" href="buttons.html">Kelas</a>
+                    <a class="collapse-item" href="buttons.html">Berita</a>
+                    <a class="collapse-item" href="buttons.html">Kategori</a>
+                </div>
+            </div>
+        </li>
 
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-          aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-database"></i>
-          <span>Pengelolaan Data</span>
-      </a>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="buttons.html">Siswa</a>
-              <a class="collapse-item" href="buttons.html">Tabungan</a>
-              <a class="collapse-item" href="buttons.html">Kelas</a>
-              <a class="collapse-item" href="buttons.html">Berita</a>
-              <a class="collapse-item" href="buttons.html">Kategori</a>
-          </div>
-      </div>
-  </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-clipboard-check"></i>
+                    <span>Verifikasi Tabungan</span></a>
+            </li>
+            @endif
 
-  <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-clipboard-check"></i>
-            <span>Verifikasi Tabungan</span></a>
-    </li>
+            {{-- Untuk Guru --}}
+            @if (Auth::guard('user')->user()->level === "guru")
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Management
+                </div>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Input Tabungan</span></a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Daftar Siswa</span></a>
+                </li>
+            @endif
+        @endif
+
+    {{-- Untuk Murid --}}
+    @if (Auth::guard('student')->user())
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Tabungan
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>History</span></a>
+        </li>
+      
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Menabung</span></a>
+        </li>
+    @endif
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
