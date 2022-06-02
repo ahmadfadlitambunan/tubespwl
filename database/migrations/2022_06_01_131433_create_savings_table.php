@@ -17,10 +17,10 @@ class CreateSavingsTable extends Migration
             $table->id();
             $table->foreignId('student_id');
             $table->foreignId('method_id');
-            $table->foreignId('admin_id');
+            $table->foreignId('admin_id')->nullable();
             $table->foreignId('payment_id')->nullable();
             $table->bigInteger('deposit');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->enum('status', ['1', '0'])->nullable();
             $table->timestamps();
         });

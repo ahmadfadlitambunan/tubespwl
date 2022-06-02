@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminCmsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,34 +40,15 @@ Route::get('/login', function(){
 Route::post('postlogin', [LoginController::class, 'logManage'])->name('postLogin');
 Route::post('/logout', [LoginController::class, 'logout']);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function(){
-
-// });
+Route::group(['prefix' => 'admin'], function(){
+    Route::resource('/crud/admins', AdminCmsController::class);
+});
 
 // Route::group(['prefix' => 'guru', 'middleware' => ['auth:user']], function(){
 
 // });
 
 // Route::group(['prefix' => 'siswa', 'middleware' => ['auth:user']], function(){
-
+//     route::get('/menabung', [MenabungController::class, 'create']);
+//     route::post('/menabung', [MenabungController::class, 'store']);
 // });

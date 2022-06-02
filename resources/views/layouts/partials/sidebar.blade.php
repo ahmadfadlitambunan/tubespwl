@@ -43,11 +43,13 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="buttons.html">Siswa</a>
-                    <a class="collapse-item" href="buttons.html">Tabungan</a>
-                    <a class="collapse-item" href="buttons.html">Kelas</a>
-                    <a class="collapse-item" href="buttons.html">Berita</a>
-                    <a class="collapse-item" href="buttons.html">Kategori</a>
+                    <a class="collapse-item" href="{{ route('admins.index') }}">Admin</a>
+                    <a class="collapse-item" href="#">Guru</a>
+                    <a class="collapse-item" href="#">Siswa</a>
+                    <a class="collapse-item" href="#">Tabungan</a>
+                    <a class="collapse-item" href="#">Kelas</a>
+                    <a class="collapse-item" href="#">Berita</a>
+                    <a class="collapse-item" href="#">Kategori</a>
                 </div>
             </div>
         </li>
