@@ -9,7 +9,7 @@
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
         @endif
@@ -19,12 +19,12 @@
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Admin</h6>
                 <a href="{{ route('admins.create') }}" class="btn btn-primary mx-2">Buat Admin Baru</a>
                 <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
-                    <button type='submit' name='btnpost'class='btn btn-outline-primary'>Report</button>
+                    <button type='submit' name='btnpost' class='btn btn-outline-primary'>Report</button>
                 </form>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class = 'table table-bordered' id="myTable">
+                    <table class='table table-bordered' id="myTable">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -35,22 +35,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($admins as $admin)      
+                            @foreach ($admins as $admin)
                             <tr>
-                                 <td>{{ $loop->iteration }}</td>
-                                 <td>{{ $admin->nip }}</td>
-                                 <td>{{ $admin->name }}</td>
-                                 <td>{{ $admin->email }}</td>
-                                 <td >         
-                                    <a href="/admin/crud/admins/{{ $admin->id }}/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $admin->nip }}</td>
+                                <td>{{ $admin->name }}</td>
+                                <td>{{ $admin->email }}</td>
+                                <td>
+                                    <a href="/admin/crud/admins/{{ $admin->id }}/edit" class="btn btn-sm btn-warning"><i
+                                            class="fa fa-edit" aria-hidden="true"></i></a>
+
                                     <form action="/admin/crud/admins/{{ $admin->id }}" method="POST" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
+                                                aria-hidden="true"></i></button>
                                     </form>
-                                 </td>
-                             </tr>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
