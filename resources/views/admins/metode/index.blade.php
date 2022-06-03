@@ -2,8 +2,7 @@
 
 @section('container')
 <div class="row">
-    <div class="col-xl-12 col-md-12 ">
-
+    <div class="col-xl-10 col-md-10 mx-4 ">
         @if (session()->has('success'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -12,11 +11,10 @@
             </button>
         </div>
         @endif
-
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center">
-                <h6 class="mr-auto font-weight-bold text-primary">Daftar Wali Kelas / Guru</h6>
-                <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2">Buat Guru / Wali Kelas Baru</a>
+                <h6 class="mr-auto font-weight-bold text-primary">Daftar Metode</h6>
+                <a href="{{ route('metode.create') }}" class="btn btn-primary mx-2">Buat Metode Baru</a>
                 <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
                     <button type='submit' name='btnpost' class='btn btn-outline-primary'>Report</button>
                 </form>
@@ -27,33 +25,30 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>NIP</th>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Nomor Telepon</th>
-                                <th>Gender</th>
+                                <th>Dibuat Pada</th>
+                                <th>Di Update Pada</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($teachers as $guru)
+                            @foreach ($methods as $metode)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $guru->nip }}</td>
-                                <td>{{ $guru->name }}</td>
-                                <td>{{ $guru->email }}</td>
-                                <td>{{ $guru->phone_no }}</td>
-                                <td>{{ $guru->gender }}</td>
+                                <td>{{ $metode->name }}</td>
+                                <td>{{ $metode->created_at }}</td>
+                                <td>{{ $metode->updated_at }}</td>
                                 <td>
-                                    <a href="/admin/crud/guru/{{ $guru->id }}/edit" class="btn btn-sm btn-warning"><i
-                                            class="fa fa-edit" aria-hidden="true"></i></a>
-
-                                    <form action="/admin/crud/guru/{{ $guru->id }}" method="POST" class="d-inline">
+                                    <a href="/admin/crud/metode/{{ $metode->id }}/edit"
+                                        class="btn btn-sm btn-warning"><i class="fa fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                    <form action="/admin/crud/metode/{{ $metode->id }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-sm btn-danger"
                                             onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
-                                                aria-hidden="true"></i></button>
+                                                aria-hidden="true"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

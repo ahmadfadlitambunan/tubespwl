@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminCmsController extends Controller
+
+class GuruCmsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class AdminCmsController extends Controller
      */
     public function index()
     {
-        return view('admins.admins.index', [
-            'admins' => User::where('level', 'admin')->get()
+        return view('admins.guru.index', [
+            'teachers' => User::where('level', 'guru')->get()
         ]);
     }
 
@@ -26,7 +27,7 @@ class AdminCmsController extends Controller
      */
     public function create()
     {
-        return view('admins.admins.create');
+        return view('admins.guru.create');
     }
 
     /**
@@ -41,23 +42,25 @@ class AdminCmsController extends Controller
             'name' => 'required',
             'email' => 'required|email|max:255|unique:users',
             'nip' => 'required|digits:7',
-            'password' => 'required|min:5',
-            'level' => 'required'
+            'gender' => 'required',
+            'phone_no' => 'required:dns|digits:12|unique:users',
+            'level' => 'required',
+            'password' => 'required|min:5'
         ]);
 
         $validated['password'] = bcrypt($request->password);
         User::create($validated);
 
-        return redirect()->route('admins.index')->with('success', "Data Admin Baru Telah Ditambahkan");
+        return redirect()->route('guru.index')->with('success', "Data Guru Baru Telah Ditambahkan");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
     }
@@ -65,13 +68,13 @@ class AdminCmsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $admin)
+    public function edit(User $guru)
     {
-        return view('admins.admins.edit', [
-            'admin' => $admin
+        return view('admins.guru.edit', [
+            'guru' => $guru
         ]);
     }
 
@@ -79,22 +82,27 @@ class AdminCmsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $admin)
+    public function update(Request $request, User $guru)
     {
         $rules = [
             'name' => 'required',
             'nip' => 'required|digits:7',
+            'level' => 'required'
         ];
 
-        if ($request->email != $admin->email) {
+        if ($request->email != $guru->email) {
             $rules['email'] = 'required|email|unique:users';
         }
 
+        if ($request->phone_no != $guru->phone_no) {
+            $rules['phone_no'] = 'required:dns|digits:12|unique:users';
+        }
+
         if ($request->password == '') {
-            $validated['password'] = $admin->password;
+            $validated['password'] = $guru->password;
         } else {
             $rules['password'] = 'min:5';
         }
@@ -106,21 +114,21 @@ class AdminCmsController extends Controller
             $validated['password'] = bcrypt($request->password);
         }
 
-        User::where('id', $admin->id)->update($validated);
+        User::where('id', $guru->id)->update($validated);
 
-        return redirect()->route('admins.index')->with('success', "Data Admin Berhasil Diubah");
+        return redirect()->route('guru.index')->with('success', "Data Guru Berhasil Diubah");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $admin)
+    public function destroy(User $guru)
     {
-        User::destroy($admin->id);
+        User::destroy($guru->id);
 
-        return redirect()->route('admins.index')->with('success', "Data Admin Berhasil Dihapus");
+        return redirect()->route('guru.index')->with('success', "Data Guru Berhasil Dihapus");
     }
 }
