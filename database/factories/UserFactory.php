@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'gender' => $this->faker->randomElement(['male', 'female']),
             'level' => $this->faker->randomElement(['guru', 'admin']),
             'phone_no' => $this->faker->e164PhoneNumber(),
+            'image' => 'profile-images/profile.png',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

@@ -140,6 +140,7 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
+    'match_old_pass' => ":attribut tidak sesuai",
 
     'custom' => [
         'attribute-name' => [
