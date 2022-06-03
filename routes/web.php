@@ -4,13 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdmGuruController;
 use App\Http\Controllers\AdminCmsController;
-<<<<<<< HEAD
 use App\Http\Controllers\GuruCmsController;
 use App\Http\Controllers\TabunganCmsController;
 use App\Http\Controllers\MetodeCmsController;
-=======
 use App\Http\Controllers\StudentProfileController;
->>>>>>> 63cbc0d26de7621909e026f1cb21b4d5e798a064
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +59,7 @@ Route::group(['prefix' => 'admin'], function () {
 //     ]);
 // });
 
-Route::group([['prefix' => 'siswa'], ['middleware' => 'auth:student']], function(){
+Route::group([['prefix' => 'siswa'], ['middleware' => 'auth:student']], function () {
     Route::get('/profile', [StudentProfileController::class, 'index'])->name('siswa.profile');
     Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('siswa.edit');
     Route::get('/ubah-password', [StudentProfileController::class, 'reset'])->name('siswa.reset');
@@ -70,7 +68,7 @@ Route::group([['prefix' => 'siswa'], ['middleware' => 'auth:student']], function
 });
 
 
-Route::group(['prefix' => 'admin-guru'], function(){
+Route::group(['prefix' => 'admin-guru'], function () {
     Route::get('/profile', [AdmGuruController::class, 'index'])->name('adm-gru.index');
     Route::get('/profile/edit', [AdmGuruController::class, 'edit'])->name('adm-gru.edit');
     Route::put('/profile/{user}', [AdmGuruController::class, 'store'])->name('adm-gru.update');
