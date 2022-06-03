@@ -16,12 +16,9 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::guard('user')->attempt(['nip' => $request->username, 'password' => $request->password ]))
-        {
+        if (Auth::guard('user')->attempt(['nip' => $request->username, 'password' => $request->password])) {
             return redirect('/admin');
-        }
-        elseif(Auth::guard('student')->attempt(['nis' => $request->username, 'password' => $request->password ]))
-        {
+        } elseif (Auth::guard('student')->attempt(['nis' => $request->username, 'password' => $request->password])) {
             return redirect('/admin');
         }
 
@@ -30,12 +27,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if(Auth::guard('user')->check())
-        {
+        if (Auth::guard('user')->check()) {
             Auth::guard('user')->logout();
-        }
-        elseif(Auth::guard('student')->check())
-        {
+        } elseif (Auth::guard('student')->check()) {
             Auth::guard('student')->logout();
         }
 
