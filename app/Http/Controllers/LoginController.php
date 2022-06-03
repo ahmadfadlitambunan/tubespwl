@@ -18,11 +18,14 @@ class LoginController extends Controller
 
         if(Auth::guard('user')->attempt(['nip' => $request->username, 'password' => $request->password ]))
         {
-            return redirect('/admin');
+            if(Auth::guard('user')->user()->level === 'admin')
+                return redirect('/admin');
+            elseif(Auth::guard('user')->user()->level === 'guru')
+                return redirect('/guru');
         }
         elseif(Auth::guard('student')->attempt(['nis' => $request->username, 'password' => $request->password ]))
         {
-            return redirect('/admin');
+            return redirect('/siswa');
         }
 
         return back()->with('loginError', 'Login Failed!');
