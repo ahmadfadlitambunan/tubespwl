@@ -170,9 +170,6 @@
                     {{ Auth::guard('student')->user()->name }}
                     @endif
                 </span>
-<<<<<<< HEAD
-                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
-=======
                 @if (Auth::guard("user")->user())                    
                 <img class="rounded-circle" width="40px" height="40px"
                     src="{{ asset('storage/'.  Auth::guard('user')->user()->image) }}">
@@ -180,15 +177,10 @@
                 <img class="rounded-circle" width="40px" height="40px"
                     src="{{ asset('storage/'.  Auth::guard('student')->user()->image) }}">
                 @endif
->>>>>>> 63cbc0d26de7621909e026f1cb21b4d5e798a064
             </a>
 
 
             <!-- Dropdown - User Information -->
-<<<<<<< HEAD
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-=======
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
 
@@ -198,7 +190,6 @@
                 @if (Auth::guard('user')->user())  
                     <a class="dropdown-item" href="{{ route('adm-gru.index') }}">
                 @endif
->>>>>>> 63cbc0d26de7621909e026f1cb21b4d5e798a064
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
