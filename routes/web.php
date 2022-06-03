@@ -4,13 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdmGuruController;
 use App\Http\Controllers\AdminCmsController;
-<<<<<<< HEAD
 use App\Http\Controllers\GuruCmsController;
 use App\Http\Controllers\TabunganCmsController;
 use App\Http\Controllers\MetodeCmsController;
-=======
 use App\Http\Controllers\StudentProfileController;
->>>>>>> 63cbc0d26de7621909e026f1cb21b4d5e798a064
 
 /*
 |--------------------------------------------------------------------------
@@ -27,41 +24,32 @@ Route::get('/', function () {
     return view('layouts.main');
 });
 
-
-Route::get('/admin', function () {
-    return view('admins.index');
-})->middleware('auth:user,student');
-
-Route::get('/admin/tabungan', function () {
-    return view('admins.tabungan.index');
-});
-
-Route::get('/berita', function () {
+Route::get('/berita', function(){
     return view('admins.posts');
 });
-
 
 Route::get('/login', function () {
     return view('login.index');
 })->middleware('guest')->name('login');
 
+// login
 Route::post('postlogin', [LoginController::class, 'logManage'])->name('postLogin');
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::group(['prefix' => 'admin'], function () {
+// routing khusus untuk admin
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function(){
+    route::get('/', function(){
+        return view('admins.index');
+    });
     Route::resource('/crud/admins', AdminCmsController::class);
     Route::resource('/crud/guru', GuruCmsController::class);
     Route::resource('/crud/tabungan', TabunganCmsController::class);
     Route::resource('/crud/metode', MetodeCmsController::class);
 });
 
-// Route::get('/profile', function(){
-//     return view('students.profile.index', [
-//         'for' => 'profile'
-//     ]);
-// });
 
-Route::group([['prefix' => 'siswa'], ['middleware' => 'auth:student']], function(){
+// routing khusus untuk murid
+Route::group(['prefix' => 'siswa', 'middleware' => ['auth:student']], function(){
     Route::get('/profile', [StudentProfileController::class, 'index'])->name('siswa.profile');
     Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('siswa.edit');
     Route::get('/ubah-password', [StudentProfileController::class, 'reset'])->name('siswa.reset');
@@ -69,8 +57,8 @@ Route::group([['prefix' => 'siswa'], ['middleware' => 'auth:student']], function
     Route::put('/profile/{siswa}', [StudentProfileController::class, 'store'])->name('siswa.update');
 });
 
-
-Route::group(['prefix' => 'admin-guru'], function(){
+// routing untuk profile guru dan admin
+Route::group(['prefix' => 'admin-guru', 'middleware' => ['auth:user']], function(){
     Route::get('/profile', [AdmGuruController::class, 'index'])->name('adm-gru.index');
     Route::get('/profile/edit', [AdmGuruController::class, 'edit'])->name('adm-gru.edit');
     Route::put('/profile/{user}', [AdmGuruController::class, 'store'])->name('adm-gru.update');
