@@ -3,7 +3,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-           <i class="fas fw fa-money-bill"></i>
+            <i class="fas fw fa-money-bill"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Mari Menabung</sup></div>
     </a>
@@ -19,7 +19,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/berita">
             <i class="fas fw fa-newspaper"></i>
             <span>Berita</span></a>
     </li>

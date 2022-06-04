@@ -11,6 +11,7 @@ use App\Http\Controllers\KategoriCmsController;
 use App\Http\Controllers\KelasCmsController;
 use App\Http\Controllers\StudentProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BeritaController;
 
 
 
@@ -78,10 +79,7 @@ Route::group(['prefix' => 'admin-guru', 'middleware' => ['auth:user']], function
     Route::post('/ubah-password', [AdmGuruController::class, 'updatePass'])->name('adm-gru.updatePass');
 });
 
-
-
-
-
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
 
 
 
