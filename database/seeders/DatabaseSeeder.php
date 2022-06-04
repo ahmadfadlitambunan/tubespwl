@@ -8,7 +8,6 @@ use App\Models\Method;
 use App\Models\Saving;
 use App\Models\Payment;
 use App\Models\Student;
-use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(1)->create();
+        User::factory(5)->create();
         Student::factory(60)->create();
         Saving::factory(30)->create();
 

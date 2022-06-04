@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Exports\GuruExport;
 use Illuminate\Http\Request;
+use Excel;
 
 
 class GuruCmsController extends Controller
@@ -130,5 +132,10 @@ class GuruCmsController extends Controller
         User::destroy($guru->id);
 
         return redirect()->route('guru.index')->with('success', "Data Guru Berhasil Dihapus");
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new GuruExport, "Data-Guru.xlsx");
     }
 }

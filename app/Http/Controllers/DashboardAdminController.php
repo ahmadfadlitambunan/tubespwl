@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardAdminController extends Controller
 {
+
     public function index()
     {
+        
         $monthly = Saving::whereMonth('created_at', date('m'))
                     ->whereYear('created_at', date('Y'))
                     ->sum('deposit');
@@ -33,7 +35,7 @@ class DashboardAdminController extends Controller
                         -> groupBy('month_name')
                         -> get();
                     
-        return view('/admins.index', [
+        return view('admins.index', [
             'monthly' => $monthly,
             'daily' => $daily,
             'annual' => $annual,

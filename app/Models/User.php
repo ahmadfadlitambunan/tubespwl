@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Grade;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use App\Models\Grade;
 
 class User extends Authenticatable
 {
@@ -42,5 +43,12 @@ class User extends Authenticatable
     public function grade()
     {
         return $this->hasOne(Grade::class);
+    }
+
+
+    public static function getGuru()
+    {
+        $records = DB::table('users')->select('nip', 'name', 'email', 'phone_no', 'gender')->where('level', 'guru')->get()->toArray();
+        return $records;
     }
 }

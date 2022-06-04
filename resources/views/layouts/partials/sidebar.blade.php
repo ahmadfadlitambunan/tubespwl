@@ -14,13 +14,13 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
     @if(Auth::guard('user')->user())
-        @if (Auth::guard('user')->user()->level === 'admin')
+        @if (Auth::guard('user')->user()->level == 'admin')
         <a class="nav-link" href="/admin">   
-        @elseif (Auth::guard('user')->user()->level === 'guru')
+        @elseif (Auth::guard('user')->user()->level == 'guru')
         <a class="nav-link" href="/guru">  
         @endif
     @endif
-    @if(Auth::guard('student'))
+    @if(Auth::guard('student')->user())
         <a class="nav-link" href="/siswa"> 
     @endif
             
