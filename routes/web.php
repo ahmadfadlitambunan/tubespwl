@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdmGuruController;
-use App\Http\Controllers\AdminCmsController;
 use App\Http\Controllers\GuruCmsController;
-use App\Http\Controllers\TabunganCmsController;
+use App\Http\Controllers\AdminCmsController;
+use App\Http\Controllers\BeritaCmsController;
 use App\Http\Controllers\MetodeCmsController;
+use App\Http\Controllers\TabunganCmsController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\StudentProfileController;
 
 /*
@@ -19,10 +21,6 @@ use App\Http\Controllers\StudentProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('layouts.main');
-});
 
 Route::get('/berita', function(){
     return view('admins.posts');
@@ -38,13 +36,19 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // routing khusus untuk admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function(){
-    route::get('/', function(){
-        return view('admins.index');
-    });
+    Route::get('/', [DashboardAdminController::class, 'index']);
     Route::resource('/crud/admins', AdminCmsController::class);
     Route::resource('/crud/guru', GuruCmsController::class);
     Route::resource('/crud/tabungan', TabunganCmsController::class);
     Route::resource('/crud/metode', MetodeCmsController::class);
+    Route::resource('/crud/berita', BeritaCmsController::class);
+    Route::get('/export/admin', [AdminCmsController::class, 'exportExcel'])->name('user.export');
+    Route::post('/import/admin', [AdminCmsController::class, 'importExcel'])->name('user.import');
+
+
+
+
+    Route::get('/berita/checkSlug', [BeritaCmsController::class, 'checkSlug']);
 });
 
 

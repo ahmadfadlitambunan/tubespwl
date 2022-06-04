@@ -13,9 +13,18 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+    @if(Auth::guard('user'))
+        @if (Auth::guard('user')->user()->level === 'admin')
+        <a class="nav-link" href="/admin">   
+        @elseif (Auth::guard('user')->user()->level === 'admin')
+        <a class="nav-link" href="/guru">  
+        @endif
+    @elseif(Auth::guard('student'))
+        <a class="nav-link" href="/siswa"> 
+    @endif
+            
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
     </li>
 
     <li class="nav-item">
@@ -48,8 +57,8 @@
                 <a class="collapse-item" href="#">Siswa</a>
                 <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
                 <a class="collapse-item" href="{{ route('metode.index') }}">Metode</a>
+                <a class="collapse-item" href="{{ route('berita.index') }}">Berita</a>
                 <a class="collapse-item" href="#">Kelas</a>
-                <a class="collapse-item" href="#">Berita</a>
                 <a class="collapse-item" href="#">Kategori</a>
             </div>
         </div>
