@@ -8,6 +8,7 @@ use App\Http\Controllers\GuruCmsController;
 use App\Http\Controllers\TabunganCmsController;
 use App\Http\Controllers\MetodeCmsController;
 use App\Http\Controllers\StudentProfileController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,11 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:student']], function()
     Route::get('/ubah-password', [StudentProfileController::class, 'reset'])->name('siswa.reset');
     Route::post('/ubah-password', [StudentProfileController::class, 'updatePass'])->name('siswa.updatePass');
     Route::put('/profile/{siswa}', [StudentProfileController::class, 'store'])->name('siswa.update');
+
+    Route::get('/', [StudentController::class, 'index'])->name('siswa.index');
+    Route::get('/menabung', [StudentController::class, 'menabung'])->name('menabung');
+    Route::post('/create', [StudentController::class, 'create'])->name('create');
+    Route::get('/history', [StudentController::class, 'history'])->name('history');
 });
 
 // routing untuk profile guru dan admin
