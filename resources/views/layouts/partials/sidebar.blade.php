@@ -13,13 +13,14 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-    @if(Auth::guard('user'))
+    @if(Auth::guard('user')->user())
         @if (Auth::guard('user')->user()->level === 'admin')
         <a class="nav-link" href="/admin">   
-        @elseif (Auth::guard('user')->user()->level === 'admin')
+        @elseif (Auth::guard('user')->user()->level === 'guru')
         <a class="nav-link" href="/guru">  
         @endif
-    @elseif(Auth::guard('student'))
+    @endif
+    @if(Auth::guard('student'))
         <a class="nav-link" href="/siswa"> 
     @endif
             
@@ -70,10 +71,10 @@
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Verifikasi Tabungan</span></a>
     </li>
-    @endif
+        @endif
 
     {{-- Untuk Guru --}}
-    @if (Auth::guard('user')->user()->level === "guru")
+        @if (Auth::guard('user')->user()->level === "guru")
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -93,7 +94,7 @@
             <i class="fas fw fa-money-check-dollar-pen"></i>
             <span>Daftar Siswa</span></a>
     </li>
-    @endif
+        @endif
     @endif
 
     {{-- Untuk Murid --}}
