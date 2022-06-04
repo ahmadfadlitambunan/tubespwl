@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="row">
-    <div class="col-xl-12 col-md-12">
+    <div class="col-xl-16 col-md-16">
         @if (session()->has('success'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -12,7 +12,7 @@
         </div>
         @endif
 
-        <div class="card shadow mb-4">
+        <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Tabungan Siswa</h6>
                 <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
@@ -22,7 +22,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class='table table-bordered' id="myTable">
-                        <thead>
+                        <thead style="text-align: center">
                             <tr>
                                 <th>No</th>
                                 <th>Nama Siswa</th>
@@ -35,7 +35,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="text-align: center">
                             @foreach ($savings as $tabungan)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>

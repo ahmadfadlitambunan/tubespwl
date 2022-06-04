@@ -22,7 +22,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class='table table-bordered' id="myTable">
-                        <thead>
+                        <thead style="text-align: center">
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
@@ -31,7 +31,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="text-align: center">
                             @foreach ($methods as $metode)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>

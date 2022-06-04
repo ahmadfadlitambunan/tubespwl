@@ -26,7 +26,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class='table table-bordered' id="myTable">
-                        <thead>
+                        <thead style="text-align: center">
                             <tr>
                                 <th>No</th>
                                 <th>NIP</th>
@@ -35,7 +35,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="text-align: center">
                             @foreach ($admins as $admin)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>

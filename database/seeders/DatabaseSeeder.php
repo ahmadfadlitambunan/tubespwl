@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Method;
 use App\Models\Saving;
@@ -60,6 +61,14 @@ class DatabaseSeeder extends Seeder
 
         Category::create([
             'name' => 'Sosial',
+        ]);
+
+        Category::create([
+            'name' => 'Lomba'
+        ]);
+
+        Category::create([
+            'name' => 'Beasiswa'
         ]);
     }
 }

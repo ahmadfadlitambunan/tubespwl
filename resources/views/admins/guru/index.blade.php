@@ -13,7 +13,7 @@
         </div>
         @endif
 
-        <div class="card shadow mb-4">
+        <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Wali Kelas / Guru</h6>
                 <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2">Buat Guru / Wali Kelas Baru</a>
@@ -24,7 +24,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class='table table-bordered' id="myTable">
-                        <thead>
+                        <thead style="text-align: center">
                             <tr>
                                 <th>No</th>
                                 <th>NIP</th>
@@ -35,7 +35,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="text-align: center">
                             @foreach ($teachers as $guru)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>

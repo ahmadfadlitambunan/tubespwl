@@ -59,8 +59,8 @@
                 <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
                 <a class="collapse-item" href="{{ route('metode.index') }}">Metode</a>
                 <a class="collapse-item" href="{{ route('berita.index') }}">Berita</a>
-                <a class="collapse-item" href="#">Kelas</a>
-                <a class="collapse-item" href="#">Kategori</a>
+                <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
+                <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori</a>
             </div>
         </div>
     </li>

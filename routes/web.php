@@ -9,8 +9,12 @@ use App\Http\Controllers\BeritaCmsController;
 use App\Http\Controllers\MetodeCmsController;
 use App\Http\Controllers\TabunganCmsController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\KategoriCmsController;
+use App\Http\Controllers\KelasCmsController;
 use App\Http\Controllers\StudentProfileController;
 use App\Http\Controllers\StudentController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +27,13 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-Route::get('/berita', function(){
-    return view('admins.posts');
-});
+// Route::get('/', function () {
+//     return view('layouts.main');
+// });
+
+// Route::get('/berita', function () {
+//     return view('admins.posts');
+// });
 
 Route::get('/login', function () {
     return view('login.index');
@@ -36,25 +44,25 @@ Route::post('postlogin', [LoginController::class, 'logManage'])->name('postLogin
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // routing khusus untuk admin
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function(){
-    Route::get('/', [DashboardAdminController::class, 'index']);
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
+    route::get('/', function () {
+        return view('admins.index');
+    });
     Route::resource('/crud/admins', AdminCmsController::class);
     Route::resource('/crud/guru', GuruCmsController::class);
     Route::resource('/crud/tabungan', TabunganCmsController::class);
     Route::resource('/crud/metode', MetodeCmsController::class);
     Route::resource('/crud/berita', BeritaCmsController::class);
+    Route::resource('/crud/kelas', KelasCmsController::class);
+    Route::resource('/crud/kategori', KategoriCmsController::class);
     Route::get('/export/admin', [AdminCmsController::class, 'exportExcel'])->name('user.export');
     Route::post('/import/admin', [AdminCmsController::class, 'importExcel'])->name('user.import');
-
-
-
-
     Route::get('/berita/checkSlug', [BeritaCmsController::class, 'checkSlug']);
 });
 
 
 // routing khusus untuk murid
-Route::group(['prefix' => 'siswa', 'middleware' => ['auth:student']], function(){
+Route::group(['prefix' => 'siswa', 'middleware' => ['auth:student']], function () {
     Route::get('/profile', [StudentProfileController::class, 'index'])->name('siswa.profile');
     Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('siswa.edit');
     Route::get('/ubah-password', [StudentProfileController::class, 'reset'])->name('siswa.reset');
@@ -68,7 +76,7 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:student']], function()
 });
 
 // routing untuk profile guru dan admin
-Route::group(['prefix' => 'admin-guru', 'middleware' => ['auth:user']], function(){
+Route::group(['prefix' => 'admin-guru', 'middleware' => ['auth:user']], function () {
     Route::get('/profile', [AdmGuruController::class, 'index'])->name('adm-gru.index');
     Route::get('/profile/edit', [AdmGuruController::class, 'edit'])->name('adm-gru.edit');
     Route::put('/profile/{user}', [AdmGuruController::class, 'store'])->name('adm-gru.update');
