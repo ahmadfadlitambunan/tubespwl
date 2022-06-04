@@ -29,7 +29,7 @@ class Student extends Authenticatable
         'remember_token',
     ];
 
-    public function tabungan()
+    public function savings()
     {
         return $this->hasMany(Saving::class);
     }

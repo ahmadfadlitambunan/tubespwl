@@ -3,9 +3,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+           <i class="fas fw fa-money-bill"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Mari Menabung</sup></div>
     </a>
 
     <!-- Divider -->
@@ -14,13 +14,13 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fw fa-users"></i>
             <span>Dashboard</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fw fa-newspaper"></i>
             <span>Berita</span></a>
     </li>
 
@@ -75,13 +75,13 @@
 
     <li class="nav-item">
         <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-solid fa-money-bill-transfer"></i>
             <span>Input Tabungan</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fw fa-money-check-dollar-pen"></i>
             <span>Daftar Siswa</span></a>
     </li>
     @endif
@@ -98,16 +98,17 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>History</span></a>
+        <a class="nav-link" href="{{ route('menabung') }}">
+            <i class="fas fw fa-dollar-sign"></i>
+            <span>Menabung</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Menabung</span></a>
+        <a class="nav-link" href="{{ route('history') }}">
+            <i class="far fw fa-hourglass"></i>
+            <span>History</span></a>
     </li>
+
     @endif
 
     <!-- Divider -->
