@@ -7,7 +7,10 @@ use App\Http\Controllers\AdminCmsController;
 use App\Http\Controllers\GuruCmsController;
 use App\Http\Controllers\TabunganCmsController;
 use App\Http\Controllers\MetodeCmsController;
+use App\Http\Controllers\KategoriCmsController;
+use App\Http\Controllers\KelasCmsController;
 use App\Http\Controllers\StudentProfileController;
+
 
 
 /*
@@ -46,6 +49,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
     Route::resource('/crud/guru', GuruCmsController::class);
     Route::resource('/crud/tabungan', TabunganCmsController::class);
     Route::resource('/crud/metode', MetodeCmsController::class);
+    Route::resource('/crud/kategori', KategoriCmsController::class);
+    Route::resource('/crud/kelas', KelasCmsController::class);
 });
 
 

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Method;
 use App\Models\Saving;
@@ -47,6 +48,18 @@ class DatabaseSeeder extends Seeder
             'name' => 'BRI',
             'a_n' => 'Bang Gihon',
             'account_no' => '844648464',
+        ]);
+
+        Category::create([
+            'name' => 'Prestasi'
+        ]);
+
+        Category::create([
+            'name' => 'Lomba'
+        ]);
+
+        Category::create([
+            'name' => 'Beasiswa'
         ]);
     }
 }
