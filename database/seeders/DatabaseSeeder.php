@@ -6,8 +6,8 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Method;
 use App\Models\Saving;
-use App\Models\Student;
 use App\Models\Payment;
+use App\Models\Student;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        User::factory(5)->create();
         Student::factory(60)->create();
         Saving::factory(30)->create();
 
@@ -51,7 +51,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
-            'name' => 'Prestasi'
+            'name' => 'Kursus',
+        ]);
+
+        Category::create([
+            'name' => 'Workshop',
+        ]);
+
+        Category::create([
+            'name' => 'Sosial',
         ]);
 
         Category::create([

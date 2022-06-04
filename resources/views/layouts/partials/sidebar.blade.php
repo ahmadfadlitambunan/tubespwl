@@ -13,9 +13,19 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fw fa-users"></i>
-            <span>Dashboard</span></a>
+    @if(Auth::guard('user')->user())
+        @if (Auth::guard('user')->user()->level == 'admin')
+        <a class="nav-link" href="/admin">   
+        @elseif (Auth::guard('user')->user()->level == 'guru')
+        <a class="nav-link" href="/guru">  
+        @endif
+    @endif
+    @if(Auth::guard('student')->user())
+        <a class="nav-link" href="/siswa"> 
+    @endif
+            
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
     </li>
 
     <li class="nav-item">
@@ -48,8 +58,8 @@
                 <a class="collapse-item" href="#">Siswa</a>
                 <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
                 <a class="collapse-item" href="{{ route('metode.index') }}">Metode</a>
+                <a class="collapse-item" href="{{ route('berita.index') }}">Berita</a>
                 <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
-                <a class="collapse-item" href="#">Berita</a>
                 <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori</a>
             </div>
         </div>
@@ -61,10 +71,10 @@
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Verifikasi Tabungan</span></a>
     </li>
-    @endif
+        @endif
 
     {{-- Untuk Guru --}}
-    @if (Auth::guard('user')->user()->level === "guru")
+        @if (Auth::guard('user')->user()->level === "guru")
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -84,7 +94,7 @@
             <i class="fas fw fa-money-check-dollar-pen"></i>
             <span>Daftar Siswa</span></a>
     </li>
-    @endif
+        @endif
     @endif
 
     {{-- Untuk Murid --}}

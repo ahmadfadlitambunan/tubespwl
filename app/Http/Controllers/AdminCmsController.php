@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Exports\UserExport;
+use App\Imports\UserImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminCmsController extends Controller
 {
@@ -123,4 +126,22 @@ class AdminCmsController extends Controller
 
         return redirect()->route('admins.index')->with('success', "Data Admin Berhasil Dihapus");
     }
+
+    public function exportExcel()
+    {
+        return Excel::download(new UserExport, 'data_admin_dan_user.xlsx');
+    }
+
+    public function importExcel(Request $request)
+    {   
+        $data = $request->file('file');
+
+        $namaFile = $data->getClientOriginalName();
+
+        $data->move('UserData', $namaFile);
+
+        Excel::import(new UserImport, \public_path('/UserData/' . $namaFile));
+
+        return redirect()->route('admins.index')->with('success', "Data berhasil di-import");
+    }   
 }

@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdmGuruController;
-use App\Http\Controllers\AdminCmsController;
 use App\Http\Controllers\GuruCmsController;
-use App\Http\Controllers\TabunganCmsController;
+use App\Http\Controllers\AdminCmsController;
+use App\Http\Controllers\BeritaCmsController;
 use App\Http\Controllers\MetodeCmsController;
+use App\Http\Controllers\TabunganCmsController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\KategoriCmsController;
 use App\Http\Controllers\KelasCmsController;
 use App\Http\Controllers\StudentProfileController;
@@ -26,13 +28,13 @@ use App\Http\Controllers\BeritaController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.main');
+Route::get('/', function(){
+    return redirect()->route('login');
 });
 
-Route::get('/berita', function () {
-    return view('admins.posts');
-});
+// Route::get('/berita', function () {
+//     return view('admins.posts');
+// });
 
 Route::get('/login', function () {
     return view('login.index');
@@ -44,15 +46,27 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // routing khusus untuk admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
-    route::get('/', function () {
-        return view('admins.index');
-    });
+    Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.index');
     Route::resource('/crud/admins', AdminCmsController::class);
     Route::resource('/crud/guru', GuruCmsController::class);
     Route::resource('/crud/tabungan', TabunganCmsController::class);
     Route::resource('/crud/metode', MetodeCmsController::class);
-    Route::resource('/crud/kategori', KategoriCmsController::class);
+    Route::resource('/crud/berita', BeritaCmsController::class);
     Route::resource('/crud/kelas', KelasCmsController::class);
+    Route::resource('/crud/kategori', KategoriCmsController::class);
+
+
+    Route::get('/export/admin', [AdminCmsController::class, 'exportExcel'])->name('user.export');
+    Route::post('/import/admin', [AdminCmsController::class, 'importExcel'])->name('user.import');
+
+    Route::get('/export/guru', [GuruCmsController::class, 'exportExcel'])->name('guru.export');
+    Route::post('/import/guru', [GuruCmsController::class, 'importExcel'])->name('guru.import');
+
+
+
+
+
+    Route::get('/berita/checkSlug', [BeritaCmsController::class, 'checkSlug']);
 });
 
 
