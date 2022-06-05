@@ -33,4 +33,9 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Saving::class);
     }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
 }

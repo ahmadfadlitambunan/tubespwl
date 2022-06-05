@@ -15,9 +15,13 @@
         <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Tabungan Siswa</h6>
-                <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
-                    <button type='submit' name='btnpost' class='btn btn-outline-primary'>Report</button>
-                </form>
+                <div class="dropdown">
+                    <button class="btn btn-outline-success" data-toggle="dropdown">Report<i class="fas fw fa-caret-down ml-2"></i></button>
+                    <div class="dropdown-menu mt-2">
+                        <a href="{{ route('tabungan.export.m') }}" class="dropdown-item">Report Bulanan</a>
+                        <a href="{{ route('tabungan.export.d') }}" class="dropdown-item">Report Harian</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -30,7 +34,6 @@
                                 {{-- <th>Nama Admin</th> --}}
                                 <th>Jenis Pembayaran</th>
                                 <th>Metode Tabungan</th>
-                                <th>Status</th>
                                 {{-- <th>Gambar</th> --}}
                                 <th>Aksi</th>
                             </tr>
@@ -41,9 +44,12 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $tabungan->student->name}}</td>
                                 <td>{{ $tabungan->deposit }}</td>
-                                <td>{{ $tabungan->payment->name }}</td>
+                                @if ($tabungan->payment)
+                                    <td>{{ $tabungan->payment->name }}</td>
+                                @else
+                                    <td>{{ $tabungan->user->name }}</td>
+                                @endif
                                 <td>{{ $tabungan->method->name }}</td>
-                                <td>{{ $tabungan->status }}</td>
                                 {{-- <td>{{ $tabungan->image }}</td> --}}
                                 <td>
                                     <a href="/admin/crud/tabungan/{{ $tabungan->id }}/edit"

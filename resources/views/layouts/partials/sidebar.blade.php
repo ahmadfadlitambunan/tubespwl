@@ -67,33 +67,28 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('saving.needverif') }}">
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Verifikasi Tabungan</span></a>
     </li>
-        @endif
+    @endif
 
     {{-- Untuk Guru --}}
         @if (Auth::guard('user')->user()->level === "guru")
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
+        <!-- Heading -->
+        <div class="sidebar-heading">
         Management
-    </div>
+        </div>
 
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fa-solid fa-money-bill-transfer"></i>
-            <span>Input Tabungan</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fas fw fa-money-check-dollar-pen"></i>
-            <span>Daftar Siswa</span></a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/guru/input">
+                <i class="fas fw fa-users"></i>
+                <span>Daftar Siswa</span>
+            </a>
+        </li>
         @endif
     @endif
 
@@ -125,7 +120,7 @@
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline mt-auto">
+    <div class="text-center d-none d-md-inline mb-auto">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 

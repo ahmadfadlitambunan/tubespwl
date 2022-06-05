@@ -8,7 +8,7 @@
                 <h6 class="mr-auto font-weight-bold text-primary">Menabung</h6>
             </div>
             <div class="card-body">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('create') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('siswa.create') }}">
                     @csrf
 
 

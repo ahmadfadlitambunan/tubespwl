@@ -2,18 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\AdmGuruController;
 use App\Http\Controllers\GuruCmsController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminCmsController;
+use App\Http\Controllers\KelasCmsController;
 use App\Http\Controllers\BeritaCmsController;
 use App\Http\Controllers\MetodeCmsController;
-use App\Http\Controllers\TabunganCmsController;
-use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\KategoriCmsController;
-use App\Http\Controllers\KelasCmsController;
+use App\Http\Controllers\TabunganCmsController;
+use App\Http\Controllers\DashboardGuruController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\StudentProfileController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DashboardGuruInputController;
 
 
 
@@ -54,17 +56,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
     Route::resource('/crud/berita', BeritaCmsController::class);
     Route::resource('/crud/kelas', KelasCmsController::class);
     Route::resource('/crud/kategori', KategoriCmsController::class);
+    Route::get('/tabungan/verif', [TabunganCmsController::class, 'needverif'])->name('saving.needverif');
+    Route::put('/tabungan/verif/{saving}', [TabunganCmsController::class, 'verify'])->name('saving.verify');
 
 
     Route::get('/export/admin', [AdminCmsController::class, 'exportExcel'])->name('user.export');
     Route::post('/import/admin', [AdminCmsController::class, 'importExcel'])->name('user.import');
 
     Route::get('/export/guru', [GuruCmsController::class, 'exportExcel'])->name('guru.export');
-    Route::post('/import/guru', [GuruCmsController::class, 'importExcel'])->name('guru.import');
-
-
-
-
+    
+    Route::get('/export/tabungan-m', [TabunganCmsController::class, 'exportExcelM'])->name('tabungan.export.m');
+    Route::get('/export/tabungan-d', [TabunganCmsController::class, 'exportExcelD'])->name('tabungan.export.d');
 
     Route::get('/berita/checkSlug', [BeritaCmsController::class, 'checkSlug']);
 });
@@ -77,11 +79,10 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:student']], function (
     Route::get('/ubah-password', [StudentProfileController::class, 'reset'])->name('siswa.reset');
     Route::post('/ubah-password', [StudentProfileController::class, 'updatePass'])->name('siswa.updatePass');
     Route::put('/profile/{siswa}', [StudentProfileController::class, 'store'])->name('siswa.update');
-
     Route::get('/', [StudentController::class, 'index'])->name('siswa.index');
     Route::get('/menabung', [StudentController::class, 'menabung'])->name('menabung');
-    Route::post('/create', [StudentController::class, 'create'])->name('create');
-    Route::get('/history', [StudentController::class, 'history'])->name('history');
+    Route::post('/create', [StudentController::class, 'create'])->name('siswa.create');
+    Route::get('/history', [StudentController::class, 'history'])->name('siswa.history');
 });
 
 // routing untuk profile guru dan admin
@@ -93,7 +94,13 @@ Route::group(['prefix' => 'admin-guru', 'middleware' => ['auth:user']], function
     Route::post('/ubah-password', [AdmGuruController::class, 'updatePass'])->name('adm-gru.updatePass');
 });
 
+Route::group(['prefix' => 'guru', 'middleware' => ['auth:user']], function () {
+    Route::resource('/', DashboardGuruController::class);
+    Route::resource('/input', DashboardGuruInputController::class);
+});
+
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
+Route::get('/berita/{post:slug}', [BeritaController::class, 'show'])->name('berita.tampil');
 
 
 

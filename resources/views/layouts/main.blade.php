@@ -85,10 +85,6 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            @include('layouts.partials.footer')
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
