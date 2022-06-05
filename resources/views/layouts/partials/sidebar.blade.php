@@ -25,7 +25,10 @@
                     @endif
 
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
+            </a>
+        </a>
     </li>
 
     <li class="nav-item">
