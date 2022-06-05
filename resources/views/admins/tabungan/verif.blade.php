@@ -13,14 +13,11 @@
             @endif
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center">
-                    <h6 class="mr-auto font-weight-bold text-primary">Daftar Transaksi</h6>
-                    <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
-                        <button type='submit' name='btnpost'class='btn btn-outline-primary'>Report</button>
-                    </form>
+                    <h6 class="mr-auto font-weight-bold text-primary">Perlu Verifikasi</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class = 'table table-bordered' id="adminTable">
+                        <table class = 'table table-bordered' id="myTable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
