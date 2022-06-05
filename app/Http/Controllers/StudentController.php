@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Http\Request;
+use Auth;
 use App\Models\Saving;
 use App\Models\Payment;
-use Auth;
+use Illuminate\Http\Request;
+use App\Exports\ExportHistory;
+use Excel;
 
 class StudentController extends Controller
 {
@@ -41,13 +43,21 @@ class StudentController extends Controller
 
         Saving::create($validated);
 
-        return redirect()->route('history')->with('success', "Tabungan Anda Sedang Diproses");
+        return redirect()->route('siswa.history')->with('success', "Tabungan Anda Sedang Diproses");
     }
 
     public function history()
     {
         return view('students.history', [
-            'savings' => Saving::where('student_id', Auth::guard('student')->user()->id)->get(),
+            'savings' => Saving::where('student_id', Auth::guard('student')->user()->id)
+                                ->where('status', '1')
+                                ->whereNotNull('user_id')
+                                ->get(),
         ]);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExportHistory, "History_Tabungan.xlsx");
     }
 }

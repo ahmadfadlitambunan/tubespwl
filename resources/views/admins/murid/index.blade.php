@@ -11,10 +11,21 @@
             </button>
         </div>
         @endif
+
         <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Siswa</h6>
-                <a href="{{ route('murid.create') }}" class="btn btn-primary mx-2">Buat murid Baru</a>
+                <a href="{{ route('murid.create') }}" class="btn btn-primary mx-2"><i class="fas fw fa-user-plus"></i></a>
+                <div class="dropdown">
+                    <button class="btn btn-outline-success" data-toggle="dropdown">Report<i class="fas fw fa-caret-down ml-2"></i></button>
+                    <div class="dropdown-menu mt-2">
+                        <a href="{{ route('murid.exportXlsx') }}" class="dropdown-item">Export Xlsx</a>
+                        <a href="{{ route('murid.exportCsv') }}" class="dropdown-item">Export Csv</a>
+                    </div>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#importCsv">
+                        importCsv
+                    </button>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -38,10 +49,12 @@
                                 <td>{{ $murid->name }}</td>
                                 <td>{{ $murid->gender }}</td>
                                 <td>
-                                    <a href="/admin/crud/murid/{{ $murid->id }}/edit" class="btn btn-sm btn-warning"><i
+                                    <a href="/admin/crud/murid/{{ $murid->nis}}" class="btn btn-sm btn-success"><i
+                                        class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="/admin/crud/murid/{{ $murid->nis }}/edit" class="btn btn-sm btn-warning"><i
                                             class="fa fa-edit" aria-hidden="true"></i></a>
 
-                                    <form action="/admin/crud/murid/{{ $murid->id }}" method="POST" class="d-inline">
+                                    <form action="/admin/crud/murid/{{ $murid->nis }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-sm btn-danger"
@@ -58,4 +71,35 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Import Excel -->
+<div class="modal fade" id="importCsv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Import File</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('murid.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Pilih file yang ingin di-import!</label>
+                    <input type="file" id="formFile" name="file">
+                  </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
+    </div>
+    </div>
+  </div>
+
 @endsection

@@ -96,16 +96,3 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
-
-.dropdown-menu {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20%);
-    transition: all .5s;
-}
-.dropdown:hover .dropdown-menu{
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0%);
-}

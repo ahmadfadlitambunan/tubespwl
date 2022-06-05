@@ -15,10 +15,8 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Kelas</h6>
-                <a href="{{ route('kelas.create') }}" class="btn btn-primary mx-2">Buat Kelas Baru</a>
-                <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
-                    <button type='submit' name='btnpost' class='btn btn-outline-primary'>Report</button>
-                </form>
+                <a href="{{ route('kelas.create') }}" class="btn btn-primary mx-2"><i class="fas fw fa-plus"></i></a>
+                <a href="{{ route('kelas.export') }}" class="btn btn-outline-success">Export</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

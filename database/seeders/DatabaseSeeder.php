@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Grade;
 use App\Models\Method;
 use App\Models\Saving;
 use App\Models\Payment;
 use App\Models\Student;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
+        User::factory(10)->create();
         Student::factory(60)->create();
         Saving::factory(30)->create();
 
@@ -68,6 +69,39 @@ class DatabaseSeeder extends Seeder
 
         Category::create([
             'name' => 'Beasiswa'
+        ]);
+
+
+
+
+
+
+        Grade::create([
+            'name' => 'Kelas 1',
+            'user_id'=> 1
+        ]);
+
+        Grade::create([
+            'name' => 'Kelas 2',
+            'user_id'=> 2
+        ]);
+
+        Grade::create([
+            'name' => 'Kelas 3',
+            'user_id'=> 3
+        ]);
+
+        Grade::create([
+            'name' => 'Kelas 4',
+            'user_id'=> 4
+        ]);
+        Grade::create([
+            'name' => 'Kelas 5',
+            'user_id'=> 5
+        ]);
+        Grade::create([
+            'name' => 'Kelas 6',
+            'user_id'=> 6
         ]);
     }
 }

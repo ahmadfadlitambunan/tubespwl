@@ -15,9 +15,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Riwayat Tabungan</h6>
-                <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
-                    <button type='submit' name='btnpost' class='btn btn-outline-primary'>Report</button>
-                </form>
+                <a href="{{ route('tabungan-siswa.export') }}" class="btn btn-outline-success mx-2">Export</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -29,7 +27,7 @@
                                 {{-- <th>Nama Admin</th> --}}
                                 <th>Pembayaran Melalui</th>
                                 <th>Metode Tabungan</th>
-                                <th>Status</th>
+                                <th>Verifikator</th>
                                 <th>Tanggal</th>
                                 {{-- <th>Gambar</th> --}}
                             </tr>
@@ -40,15 +38,14 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $tabungan->deposit }}</td>
                                 
-                                @if ($tabungan->payment)
+                                @if ( $tabungan->payment)
                                 <td>{{ $tabungan->payment->name }}</td>
                                 @else
-                                <td>{{ $tabungan->user->name }}</td>
+                                <td>-</td>
                                 @endif
                                 <td>{{ $tabungan->method->name }}</td>
-                                <td>{{ $tabungan->status }}</td>
+                                <td>{{ $tabungan->user->name }}</td>
                                 <td>{{ $tabungan->created_at }}</td>
-                                {{-- <td>{{ $tabungan->image }}</td> --}}
 
                             </tr>
                             @endforeach

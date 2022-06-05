@@ -7,6 +7,7 @@ use App\Models\Saving;
 use Illuminate\Http\Request;
 use App\Exports\TabunganExportHarian;
 use App\Exports\TabunganExportBulanan;
+use Auth;
 
 class TabunganCmsController extends Controller
 {
@@ -118,12 +119,12 @@ class TabunganCmsController extends Controller
         if($request && $request->status == "pass"){
             $result = $saving->update([
                 'status' => 1,
-                'user' => auth()->user()->id
+                'user_id' => Auth::guard('user')->user()->id
             ]);
         } elseif ($request && $request->status == "fail") {
             $result = $saving->update([
                 'status' => 0,
-                'user' => auth()->user()->id
+                'user_id' => Auth::guard('user')->user()->id
             ]);
         }   
 

@@ -17,7 +17,6 @@
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar berita</h6>
                 <a href="{{ route('berita.create') }}" class="btn btn-primary mr-2"><i class="fas fw fa-plus"></i></a>
-                <a href="#" class="btn btn-success mx-2">Export</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -41,6 +40,7 @@
                                 <td>{{ $post->excerpt }}</td>
                                 <td><img src="{{ asset('storage/'. $post->image) }}" alt="{{ $post->judul }}" width="128px" height="72px"></td>
                                 <td>
+                                    <a href="{{ route('berita.tampil', ['post' => $post->slug]) }}" class="btn btn-sm btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     <a href="/admin/crud/berita/{{ $post->slug }}/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
 
                                     <form action="{{ route('berita.destroy', ['beritum' => $post->slug]) }}" method="POST" class="d-inline">
