@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Saving;
+use App\Models\Grade;
 
 class Student extends Authenticatable
 {
@@ -33,7 +35,6 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Saving::class);
     }
-
     public function grade()
     {
         return $this->belongsTo(Grade::class);

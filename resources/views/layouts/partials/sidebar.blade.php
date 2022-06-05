@@ -13,19 +13,19 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-    @if(Auth::guard('user')->user())
+        @if(Auth::guard('user')->user())
         @if (Auth::guard('user')->user()->level == 'admin')
-        <a class="nav-link" href="/admin">   
-        @elseif (Auth::guard('user')->user()->level == 'guru')
-        <a class="nav-link" href="/guru">  
-        @endif
-    @endif
-    @if(Auth::guard('student')->user())
-        <a class="nav-link" href="/siswa"> 
-    @endif
-            
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
+        <a class="nav-link" href="/admin">
+            @elseif (Auth::guard('user')->user()->level == 'guru')
+            <a class="nav-link" href="/guru">
+                @endif
+                @endif
+                @if(Auth::guard('student')->user())
+                <a class="nav-link" href="/siswa">
+                    @endif
+
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
     </li>
 
     <li class="nav-item">
@@ -55,7 +55,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('admins.index') }}">Admin</a>
                 <a class="collapse-item" href="{{ route('guru.index') }}">Guru</a>
-                <a class="collapse-item" href="#">Siswa</a>
+                <a class="collapse-item" href="{{ route('murid.index') }}">Siswa</a>
                 <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
                 <a class="collapse-item" href="{{ route('berita.index') }}">Berita</a>
                 <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori</a>
@@ -74,22 +74,22 @@
     @endif
 
     {{-- Untuk Guru --}}
-        @if (Auth::guard('user')->user()->level === "guru")
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    @if (Auth::guard('user')->user()->level === "guru")
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
+    <!-- Heading -->
+    <div class="sidebar-heading">
         Management
-        </div>
+    </div>
 
-        <li class="nav-item">
-            <a class="nav-link" href="/guru/input">
-                <i class="fas fw fa-users"></i>
-                <span>Daftar Siswa</span>
-            </a>
-        </li>
-        @endif
+    <li class="nav-item">
+        <a class="nav-link" href="/guru/input">
+            <i class="fas fw fa-users"></i>
+            <span>Daftar Siswa</span>
+        </a>
+    </li>
+    @endif
     @endif
 
     {{-- Untuk Murid --}}

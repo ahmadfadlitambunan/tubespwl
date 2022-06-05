@@ -2,10 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\AdmGuruController;
 use App\Http\Controllers\GuruCmsController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminCmsController;
 use App\Http\Controllers\KelasCmsController;
 use App\Http\Controllers\BeritaCmsController;
@@ -15,6 +13,9 @@ use App\Http\Controllers\TabunganCmsController;
 use App\Http\Controllers\DashboardGuruController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\StudentProfileController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\SiswaCmsController;
 use App\Http\Controllers\DashboardGuruInputController;
 
 
@@ -30,7 +31,7 @@ use App\Http\Controllers\DashboardGuruInputController;
 |
 */
 
-Route::get('/', function(){
+Route::get('/', function () {
     return redirect()->route('login');
 });
 
@@ -55,6 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
     Route::resource('/crud/metode', MetodeCmsController::class);
     Route::resource('/crud/berita', BeritaCmsController::class);
     Route::resource('/crud/kelas', KelasCmsController::class);
+    Route::resource('/crud/murid', SiswaCmsController::class);
     Route::resource('/crud/kategori', KategoriCmsController::class);
     Route::get('/tabungan/verif', [TabunganCmsController::class, 'needverif'])->name('saving.needverif');
     Route::put('/tabungan/verif/{saving}', [TabunganCmsController::class, 'verify'])->name('saving.verify');
@@ -62,9 +64,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
 
     Route::get('/export/admin', [AdminCmsController::class, 'exportExcel'])->name('user.export');
     Route::post('/import/admin', [AdminCmsController::class, 'importExcel'])->name('user.import');
-
     Route::get('/export/guru', [GuruCmsController::class, 'exportExcel'])->name('guru.export');
-    
+
     Route::get('/export/tabungan-m', [TabunganCmsController::class, 'exportExcelM'])->name('tabungan.export.m');
     Route::get('/export/tabungan-d', [TabunganCmsController::class, 'exportExcelD'])->name('tabungan.export.d');
 

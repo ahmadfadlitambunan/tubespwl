@@ -13,9 +13,8 @@
         @endif
         <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
-                <h6 class="mr-auto font-weight-bold text-primary">Daftar Wali Kelas / Guru</h6>
-                <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2"><i class="fas fw fa-user-plus"></i></a>
-                <a href="{{ route('guru.export') }}" class="btn btn-success">Export</a>
+                <h6 class="mr-auto font-weight-bold text-primary">Daftar Siswa</h6>
+                <a href="{{ route('murid.create') }}" class="btn btn-primary mx-2">Buat murid Baru</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -23,28 +22,26 @@
                         <thead style="text-align: center">
                             <tr>
                                 <th>No</th>
-                                <th>NIP</th>
+                                <th>Nama Kelas</th>
+                                <th>NIS</th>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Nomor Telepon</th>
-                                <th>Gender</th>
+                                <th>Jenis Kelamin</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody style="text-align: center">
-                            @foreach ($teachers as $guru)
+                            @foreach ($students as $murid)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $guru->nip }}</td>
-                                <td>{{ $guru->name }}</td>
-                                <td>{{ $guru->email }}</td>
-                                <td>{{ $guru->phone_no }}</td>
-                                <td>{{ $guru->gender }}</td>
+                                <td>{{ $murid->grade->name }}</td>
+                                <td>{{ $murid->nis }}</td>
+                                <td>{{ $murid->name }}</td>
+                                <td>{{ $murid->gender }}</td>
                                 <td>
-                                    <a href="/admin/crud/guru/{{ $guru->id }}/edit" class="btn btn-sm btn-warning"><i
+                                    <a href="/admin/crud/murid/{{ $murid->id }}/edit" class="btn btn-sm btn-warning"><i
                                             class="fa fa-edit" aria-hidden="true"></i></a>
 
-                                    <form action="/admin/crud/guru/{{ $guru->id }}" method="POST" class="d-inline">
+                                    <form action="/admin/crud/murid/{{ $murid->id }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-sm btn-danger"
