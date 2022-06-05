@@ -13,19 +13,19 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-    @if(Auth::guard('user')->user())
+        @if(Auth::guard('user')->user())
         @if (Auth::guard('user')->user()->level == 'admin')
-        <a class="nav-link" href="/admin">   
-        @elseif (Auth::guard('user')->user()->level == 'guru')
-        <a class="nav-link" href="/guru">  
-        @endif
-    @endif
-    @if(Auth::guard('student')->user())
-        <a class="nav-link" href="/siswa"> 
-    @endif
-            
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
+        <a class="nav-link" href="/admin">
+            @elseif (Auth::guard('user')->user()->level == 'guru')
+            <a class="nav-link" href="/guru">
+                @endif
+                @endif
+                @if(Auth::guard('student')->user())
+                <a class="nav-link" href="/siswa">
+                    @endif
+
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
     </li>
 
     <li class="nav-item">
@@ -55,7 +55,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('admins.index') }}">Admin</a>
                 <a class="collapse-item" href="{{ route('guru.index') }}">Guru</a>
-                <a class="collapse-item" href="#">Siswa</a>
+                <a class="collapse-item" href="{{ route('murid.index') }}">Siswa</a>
                 <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
                 <a class="collapse-item" href="{{ route('metode.index') }}">Metode</a>
                 <a class="collapse-item" href="{{ route('berita.index') }}">Berita</a>
@@ -71,10 +71,10 @@
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Verifikasi Tabungan</span></a>
     </li>
-        @endif
+    @endif
 
     {{-- Untuk Guru --}}
-        @if (Auth::guard('user')->user()->level === "guru")
+    @if (Auth::guard('user')->user()->level === "guru")
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -94,7 +94,7 @@
             <i class="fas fw fa-money-check-dollar-pen"></i>
             <span>Daftar Siswa</span></a>
     </li>
-        @endif
+    @endif
     @endif
 
     {{-- Untuk Murid --}}

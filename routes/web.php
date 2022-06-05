@@ -14,6 +14,7 @@ use App\Http\Controllers\KelasCmsController;
 use App\Http\Controllers\StudentProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\SiswaCmsController;
 
 
 
@@ -28,7 +29,7 @@ use App\Http\Controllers\BeritaController;
 |
 */
 
-Route::get('/', function(){
+Route::get('/', function () {
     return redirect()->route('login');
 });
 
@@ -53,12 +54,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
     Route::resource('/crud/metode', MetodeCmsController::class);
     Route::resource('/crud/berita', BeritaCmsController::class);
     Route::resource('/crud/kelas', KelasCmsController::class);
+    Route::resource('/crud/murid', SiswaCmsController::class);
     Route::resource('/crud/kategori', KategoriCmsController::class);
-
-
     Route::get('/export/admin', [AdminCmsController::class, 'exportExcel'])->name('user.export');
     Route::post('/import/admin', [AdminCmsController::class, 'importExcel'])->name('user.import');
-
     Route::get('/export/guru', [GuruCmsController::class, 'exportExcel'])->name('guru.export');
     Route::post('/import/guru', [GuruCmsController::class, 'importExcel'])->name('guru.import');
 

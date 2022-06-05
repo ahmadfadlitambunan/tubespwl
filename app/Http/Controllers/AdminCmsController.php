@@ -133,7 +133,7 @@ class AdminCmsController extends Controller
     }
 
     public function importExcel(Request $request)
-    {   
+    {
         $data = $request->file('file');
 
         $namaFile = $data->getClientOriginalName();
@@ -143,5 +143,5 @@ class AdminCmsController extends Controller
         Excel::import(new UserImport, \public_path('/UserData/' . $namaFile));
 
         return redirect()->route('admins.index')->with('success', "Data berhasil di-import");
-    }   
+    }
 }
