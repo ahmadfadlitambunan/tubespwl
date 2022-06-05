@@ -32,7 +32,7 @@
                             </div>
                         @enderror
                     </div>
-
+                    
                     <div class="col-xl-3">
                         <label for="payment_id">Pembayaran</label>
                         <select class="form-select @error('payments') is-invalid @enderror" name="payment_id" id="payment_id" required>
