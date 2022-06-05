@@ -104,8 +104,8 @@ class TabunganCmsController extends Controller
     public function needverif()
     {
         $result = Saving::where('status', NULL)
-                             ->whereNotNull('image')
-                             ->get();
+                          ->whereNotNull('image')
+                          ->get();
 
         return view('admins.tabungan.verif', [
             'savings' => $result

@@ -24,9 +24,9 @@ class DashboardAdminController extends Controller
 
         $daily = Saving::whereDate('created_at', Carbon::today())->sum('deposit');
 
-        $pending = Saving::where('method_id', 2)
-                    ->where('status', NULL)
-                    ->count();
+        $pending = Saving::where('status', NULL)
+                           ->whereNotNull('image')
+                           ->count();
 
         $area_chart = Saving::select(
                                 DB::raw("(SUM(deposit)) as Total"),
@@ -40,9 +40,7 @@ class DashboardAdminController extends Controller
             'daily' => $daily,
             'annual' => $annual,
             'pending' => $pending,
-            'AllStudent' => Student::all()->count(),
             'visual_admn' => $area_chart
-
         ]);
     }
 }
