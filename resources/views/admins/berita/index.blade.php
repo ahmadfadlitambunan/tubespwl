@@ -37,7 +37,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->title}}</td>
-                                <td>{{ $post->user->name }}</td>
+                                <td>{{ $post->author->name }}</td>
                                 <td>{{ $post->excerpt }}</td>
                                 <td><img src="{{ asset('storage/'. $post->image) }}" alt="{{ $post->judul }}" width="128px" height="72px"></td>
                                 <td>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Models\Saving;
 use Illuminate\Http\Request;
+use App\Exports\TabunganExportHarian;
+use App\Exports\TabunganExportBulanan;
 
 class TabunganCmsController extends Controller
 {
@@ -15,7 +18,7 @@ class TabunganCmsController extends Controller
     public function index()
     {
         return view('admins.tabungan.index', [
-            'savings' => Saving::all()
+            'savings' => Saving::where('status', '1')->get()
         ]);
     }
 
@@ -96,5 +99,44 @@ class TabunganCmsController extends Controller
     public function destroy()
     {
         //
+    }
+
+    public function needverif()
+    {
+        $result = Saving::where('status', NULL)
+                             ->whereNotNull('image')
+                             ->get();
+
+        return view('admins.tabungan.verif', [
+            'savings' => $result
+        ]);
+    }
+ 
+    public function verify(Request $request, Saving $saving)
+    {
+        
+        if($request && $request->status == "pass"){
+            $result = $saving->update([
+                'status' => 1,
+                'user' => auth()->user()->id
+            ]);
+        } elseif ($request && $request->status == "fail") {
+            $result = $saving->update([
+                'status' => 0,
+                'user' => auth()->user()->id
+            ]);
+        }   
+
+        return redirect()->back()->with('success', "Status tabungan telah diubah");  
+    }
+
+    public function exportExcelM()
+    {
+        return Excel::download(new TabunganExportBulanan, "tabungan-bulanan.xlsx");
+    }
+
+    public function exportExcelD()
+    {
+        return Excel::download(new TabunganExportHarian, "tabungan-harian.xlsx");
     }
 }

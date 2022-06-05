@@ -14,7 +14,7 @@
         <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Wali Kelas / Guru</h6>
-                <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2">Buat Guru / Wali Kelas Baru</a>
+                <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2"><i class="fas fw fa-user-plus"></i></a>
                 <a href="{{ route('guru.export') }}" class="btn btn-success">Export</a>
             </div>
             <div class="card-body">

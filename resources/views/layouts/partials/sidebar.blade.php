@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -57,17 +57,17 @@
                 <a class="collapse-item" href="{{ route('guru.index') }}">Guru</a>
                 <a class="collapse-item" href="{{ route('murid.index') }}">Siswa</a>
                 <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
-                <a class="collapse-item" href="{{ route('metode.index') }}">Metode</a>
                 <a class="collapse-item" href="{{ route('berita.index') }}">Berita</a>
-                <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
                 <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori</a>
+                <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
+                <a class="collapse-item" href="{{ route('metode.index') }}">Metode</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('saving.needverif') }}">
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Verifikasi Tabungan</span></a>
     </li>
@@ -84,15 +84,10 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fa-solid fa-money-bill-transfer"></i>
-            <span>Input Tabungan</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fas fw fa-money-check-dollar-pen"></i>
-            <span>Daftar Siswa</span></a>
+        <a class="nav-link" href="/guru/input">
+            <i class="fas fw fa-users"></i>
+            <span>Daftar Siswa</span>
+        </a>
     </li>
     @endif
     @endif
@@ -114,7 +109,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('history') }}">
+        <a class="nav-link" href="{{ route('siswa.history') }}">
             <i class="far fw fa-hourglass"></i>
             <span>History</span></a>
     </li>
@@ -125,7 +120,7 @@
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline mt-auto">
+    <div class="text-center d-none d-md-inline mb-auto">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 

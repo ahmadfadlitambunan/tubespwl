@@ -18,8 +18,7 @@ class GuruExport implements FromCollection, WithHeadings
             'Gender'
         ];
     }
-    
-    
+      
     
     /**
     * @return \Illuminate\Support\Collection

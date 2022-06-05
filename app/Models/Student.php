@@ -39,4 +39,9 @@ class Student extends Authenticatable
     {
         return $this->belongsTo(Grade::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'nis';
+    }
 }
