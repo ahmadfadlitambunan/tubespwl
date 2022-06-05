@@ -97,6 +97,7 @@ Route::group(['prefix' => 'admin-guru', 'middleware' => ['auth:user']], function
 Route::group(['prefix' => 'guru', 'middleware' => ['auth:user']], function () {
     Route::resource('/', DashboardGuruController::class);
     Route::resource('/input', DashboardGuruInputController::class);
+    Route::get('/export/siswa-class', [DashboardGuruInputController::class, 'exportExcel'])->name('exportSiswaKls');
 });
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');

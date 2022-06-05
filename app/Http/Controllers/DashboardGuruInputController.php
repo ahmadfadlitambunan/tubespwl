@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Models\Grade;
 use App\Models\Saving;
 use App\Models\Student;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
+use App\Exports\ExportSiswaPerkelas;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardGuruInputController extends Controller
 {
@@ -56,19 +59,17 @@ class DashboardGuruInputController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nis)
+    public function show(Student $input)
     {
         $classes = Grade::where('user_id', auth()->user()->id)->get();
-        $students = Student::where('nis', $nis)->get();
-        foreach ($students as $item){
-            $id = $item['id'];
-        }
-        $depo =  Saving::select('deposit')->where('student_id', $id)->where('status', '1')->pluck('deposit')->sum();
+
+        $depo =  Saving::select('deposit', 'created_at')->where('student_id', $input->id)->where('status', '1')->paginate(7);
 
         return view("guru.input", [
-            'students' => $students,
+            'student' => $input,
             'classess' => $classes,
-            'sum_depo' => $depo
+            'sum_depo' => $depo->sum('deposit'),
+            'savings' => $depo
         ]);
     }
 
@@ -90,6 +91,10 @@ class DashboardGuruInputController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'deposit' => 'required|max:6'
+        ]);
+        
         $student_nis = $request->nis;
         $students = Student::where('nis', $student_nis)->get();
 
@@ -119,5 +124,14 @@ class DashboardGuruInputController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function exportExcel()
+    {
+        $classes = Grade::where('user_id', Auth::guard('user')->user()->id)->get();
+        foreach($classes as $item){
+            $name = $item['name'];
+        }
+        return Excel::download(new ExportSiswaPerkelas, $name . '.xlsx');
     }
 }

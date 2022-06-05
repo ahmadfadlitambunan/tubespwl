@@ -19,11 +19,7 @@
                     <h6 class="mr-auto font-weight-bold text-primary">Daftar Siswa :
                     @foreach($classes as $class) {{$class->name}}@endforeach
                     </h6>
-                    <a href="{{ route('admins.create') }}" class="btn btn-primary mr-2"><i class="fas fw fa-user-plus"></i></a>
-                    <a href="{{ route('user.export') }}" class="btn btn-success mx-2">Export</a>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importExcel">
-                        Import
-                    </button>
+                    <a href="{{ route('exportSiswaKls') }}" class="btn btn-success mx-2">Export</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -56,35 +52,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal Import Excel -->
-    <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Import File</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('user.import') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Pilih file yang ingin di-import!</label>
-                                <input type="file" id="formFile" name="file">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
 @endsection

@@ -73,38 +73,38 @@
                     <div class="col-md-12">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>NIS</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{ $student->nis }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nama</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{ $student->name}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Jenis Kelamin</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>
-                                                    @if ($student->gender === 'female')
-                                                    Perempuan
-                                                    @elseif($student->gender === 'male')
-                                                    Laki - laki
-                                                    @else
-                                                    -
-                                                    @endif
-                                                </p>
-                                            </div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>NIS</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $student->nis }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Nama</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ $student->name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Jenis Kelamin</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            @if ($student->gender === 'female')
+                                            Perempuan
+                                            @elseif($student->gender === 'male')
+                                            Laki - laki
+                                            @else
+                                            -
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row">
