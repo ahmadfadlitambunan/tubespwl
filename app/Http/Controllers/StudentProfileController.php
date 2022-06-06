@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Student;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
 use Auth;
+use App\Models\Saving;
+use App\Models\Student;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class StudentProfileController extends Controller
 {
     public function index()
     {
         return view('profile.siswa.index', [
-            'student' => Student::findOrFail(Auth::guard('student')->user()->id)
+            'student' => Student::findOrFail(Auth::guard('student')->user()->id),
+            'jumlah' => Saving::where('student_id', Auth::guard('student')->user()->id)
+                                ->where('status', '1')
+                                ->sum('deposit')
         ]);
     }
 

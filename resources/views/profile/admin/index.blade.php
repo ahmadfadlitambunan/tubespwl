@@ -36,7 +36,9 @@
                                     @endif                           
                                     </span>
                             </h6>
-                            <h6 class="proile-rating fs-4">Kelas : <span>???</span></h6>
+                            @if($user->level === "guru")
+                            <h6 class="proile-rating fs-4">Kelas : <span>{{ $user->grade->name }}</span></h6>
+                            @endif
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profile</a>

@@ -115,7 +115,7 @@
                                         <label>Jumlah Tabungan</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Rp 1000000</p>
+                                        <p>@currency($jumlah)</p>
                                     </div>
                                 </div>
                             </div>

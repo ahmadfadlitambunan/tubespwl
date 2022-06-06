@@ -15,9 +15,6 @@
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Pembayaran</h6>
                 <a href="{{ route('pembayaran.create') }}" class="btn btn-primary mx-2">Buat Pembayaran</a>
-                <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
-                    <button type='submit' name='btnpost' class='btn btn-outline-primary'>Report</button>
-                </form>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

@@ -1,8 +1,16 @@
 <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
+    @if(Auth::guard('user')->user())
+        @if(Auth::guard('user')->user()->level === "admin")
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.index') }}">
+        @elseif(Auth::guard('user')->user()->level === "guru")
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('index') }}">
+        @endif
+    @elseif(Auth::guard('student')->user())
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('siswa.index') }}">
+    @endif
+    <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fw fa-money-bill"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Mari Menabung</sup></div>

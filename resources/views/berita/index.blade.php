@@ -56,7 +56,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
-                        <a href="/berita?category{{$post->category->id }}" class="text-decoration-none text-light">
+                        <a href="/berita?category={{$post->category->id }}" class="text-decoration-none text-light">
                             {{$post->category->name }}
                         </a>
                     </div>
@@ -86,6 +86,7 @@
             </div>
             @endforeach
         </div>
+        {{ $posts->links() }}
         @else
             <p class="text-center fs-4">No post found.</p>
          @endif

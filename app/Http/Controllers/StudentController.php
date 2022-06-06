@@ -9,13 +9,37 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Exports\ExportHistory;
 use Excel;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
 
     public function index()
     {
-        return view('students.index');
+
+        $monthly = Saving::whereMonth('created_at', date('m'))
+            ->where('user_id', Auth::guard('student')->user()->id)
+            ->whereYear('created_at', date('Y'))
+            ->where('status', '1')
+            ->sum('deposit');
+
+        $total = Saving::whereYear('created_at', date('Y'))
+            ->where('user_id', Auth::guard('student')->user()->id)
+            ->where('status', '1')
+            ->sum('deposit');
+
+        $daily = Saving::whereDate('created_at', Carbon::today())
+            ->where('user_id', Auth::guard('student')->user()->id)
+            ->where('status', '1')
+            ->sum('deposit');
+
+
+            
+        return view('students.index', [
+            'monthly' => $monthly,
+            'daily' => $daily,
+            'total' => $total,
+        ]);
     }
 
     public function menabung()

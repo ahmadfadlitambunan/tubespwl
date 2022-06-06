@@ -27,7 +27,7 @@
                 @foreach ($admins as $admin)
                     <div class="row no-gutters align-items-center">
                         <div class="col"> 
-                          <a href="{{ route('admin.show', ['admin' => $admin->id]) }}" class="text-big" data-abc="true">{{ $admin->name }}</a>
+                          <a href="{{ route('admins.show', ['admin' => $admin->id]) }}" class="text-big" data-abc="true">{{ $admin->name }}</a>
                           <div class="text-muted small">Admin</div>
                           <hr class="p-0">
                         </div>

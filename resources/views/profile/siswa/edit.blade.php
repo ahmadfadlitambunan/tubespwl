@@ -2,7 +2,7 @@
 
 @section('container')    
 <div class="container emp-profile">
-    <form method="post" action="/siswa/profile/{{ $student->id }}" enctype="multipart/form-data">
+    <form method="post" action="/siswa/profile/{{ $student->nis }}" enctype="multipart/form-data">
         @method('put')
         @csrf
         <div class="row">
