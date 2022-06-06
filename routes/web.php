@@ -16,6 +16,7 @@ use App\Http\Controllers\StudentProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\SiswaCmsController;
+use App\Http\Controllers\PembayaranCmsController;
 use App\Http\Controllers\DashboardGuruInputController;
 
 
@@ -58,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user']], function () {
     Route::resource('/crud/kelas', KelasCmsController::class);
     Route::resource('/crud/murid', SiswaCmsController::class);
     Route::resource('/crud/kategori', KategoriCmsController::class);
+    Route::resource('/crud/pembayaran', PembayaranCmsController::class);
     Route::get('/tabungan/verif', [TabunganCmsController::class, 'needverif'])->name('saving.needverif');
     Route::put('/tabungan/verif/{saving}', [TabunganCmsController::class, 'verify'])->name('saving.verify');
 

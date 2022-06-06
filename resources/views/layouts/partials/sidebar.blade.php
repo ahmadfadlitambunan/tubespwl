@@ -59,11 +59,12 @@
                 <a class="collapse-item" href="{{ route('admins.index') }}">Admin</a>
                 <a class="collapse-item" href="{{ route('guru.index') }}">Guru</a>
                 <a class="collapse-item" href="{{ route('murid.index') }}">Siswa</a>
-                <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
+                <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
                 <a class="collapse-item" href="{{ route('berita.index') }}">Berita</a>
                 <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori</a>
-                <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
+                <a class="collapse-item" href="{{ route('tabungan.index') }}">Tabungan</a>
                 <a class="collapse-item" href="{{ route('metode.index') }}">Metode</a>
+                <a class="collapse-item" href="{{ route('pembayaran.index') }}">Jenis Pembayaran</a>
             </div>
         </div>
     </li>
