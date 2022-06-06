@@ -8,7 +8,7 @@
                 <h6 class="mr-auto font-weight-bold text-primary">Edit Siswa</h6>
             </div>
             <div class="card-body">
-                <form method="POST" action="/admin/crud/murid/{{ $murid->id }}">
+                <form method="POST" action="/admin/crud/murid/{{ $murid->nis }}">
                     @method('put')
                     @csrf
 

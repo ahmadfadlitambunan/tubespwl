@@ -2,16 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\Grade;
+use App\Models\Student;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class KelasImport implements FromCollection
+class SiswaAll implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Grade::all();
+        return Student::all();
     }
 }

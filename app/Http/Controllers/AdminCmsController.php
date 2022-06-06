@@ -60,9 +60,11 @@ class AdminCmsController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $admin)
     {
-        //
+        return view('admins.admins.show', [
+            'admin' => $admin
+        ]);
     }
 
     /**

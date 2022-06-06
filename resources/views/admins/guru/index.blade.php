@@ -16,7 +16,7 @@
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Wali Kelas / Guru</h6>
                 <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2"><i
                         class="fas fw fa-user-plus"></i></a>
-                <a href="{{ route('guru.export') }}" class="btn btn-success">Export</a>
+                <a href="{{ route('guru.export') }}" class="btn btn-outline-success">Export</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -42,6 +42,8 @@
                                 <td>{{ $guru->phone_no }}</td>
                                 <td>{{ $guru->gender }}</td>
                                 <td>
+                                    <a href="/admin/crud/guru/{{ $guru->id }}" class="btn btn-sm btn-success"><i
+                                            class="fa fa-eye" aria-hidden="true"></i></a>
                                     <a href="/admin/crud/guru/{{ $guru->id }}/edit" class="btn btn-sm btn-warning"><i
                                             class="fa fa-edit" aria-hidden="true"></i></a>
 

@@ -8,8 +8,18 @@ use Auth;
 class LoginController extends Controller
 {
     // untuk Login
+
+    public function index()
+    {
+        if (Auth::guard('user')->user() || Auth::guard('student')->user())
+            return back();
+
+        return view('login.index');
+    }
+
     public function logManage(Request $request)
     {
+
 
         $request->validate([
             'username' => 'required',

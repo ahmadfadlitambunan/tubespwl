@@ -3,7 +3,7 @@
 
 @section('container')
 <div class="row">
-    <div class="col-xl-12 col-md-12 mx-4 ">
+    <div class="col-xl-12 col-md-12">
 
         @if (session()->has('success'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -19,8 +19,8 @@
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Admin</h6>
                 <a href="{{ route('admins.create') }}" class="btn btn-primary mr-2"><i
                         class="fas fw fa-user-plus"></i></a>
-                <a href="{{ route('user.export') }}" class="btn btn-success mx-2">Export</a>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importExcel">
+                <a href="{{ route('user.export') }}" class="btn btn-outline-success mx-2">Export</a>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#importExcel">
                     Import
                 </button>
             </div>
@@ -46,6 +46,8 @@
                                 <td>{{ $admin->email }}</td>
                                 <td>{{ $admin->image }}</td>
                                 <td>
+                                    <a href="/admin/crud/admins/{{ $admin->id }}" class="btn btn-sm btn-success"><i
+                                            class="fa fa-eye" aria-hidden="true"></i></a>
                                     <a href="/admin/crud/admins/{{ $admin->id }}/edit" class="btn btn-sm btn-warning"><i
                                             class="fa fa-edit" aria-hidden="true"></i></a>
 

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use Excel;
 use App\Models\Grade;
+use App\Models\Saving;
+use App\Models\Student;
+use App\Exports\SiswaAll;
+use App\Imports\importSiswa;
 use Illuminate\Http\Request;
 
 class SiswaCmsController extends Controller
@@ -60,9 +64,15 @@ class SiswaCmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Student $murid)
     {
-        //
+        $depo =  Saving::select('deposit', 'created_at')->where('student_id', $murid->id)->where('status', '1')->paginate(7);
+
+        return view("admins.murid.show", [
+            'student' => $murid,
+            'sum_depo' => $depo->sum('deposit'),
+            'savings' => $depo
+        ]);
     }
 
     /**
@@ -122,5 +132,28 @@ class SiswaCmsController extends Controller
         Student::destroy($murid->id);
 
         return redirect()->route('murid.index')->with('success', "Data Murid Berhasil Dihapus");
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new SiswaAll, 'Data-Siswa.xlsx');
+    }
+
+    public function exportCsv()
+    {
+        return Excel::download(new SiswaAll, 'Data-Siswa.csv');
+    }
+
+    public function importCsv(Request $request)
+    {
+        $data = $request->file('file');
+
+        $namaFile = $data->getClientOriginalName();
+
+        $data->move('UserData', $namaFile);
+
+        Excel::import(new importSiswa, \public_path('/UserData/' . $namaFile));
+
+        return redirect()->route('murid.index')->with('success', "Data berhasil di-import");
     }
 }

@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="row">
-    <div class="col-xl-16 col-md-16">
+    <div class="col-xl-12 col-md-12">
         @if (session()->has('success'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ session('success') }}

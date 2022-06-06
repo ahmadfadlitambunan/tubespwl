@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Grade;
+use App\Models\Saving;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,10 @@ class User extends Authenticatable
         return $this->hasOne(Grade::class);
     }
 
+    public function savings()
+    {
+        return $this->hasMany(Saving::class);
+    }
 
     public static function getGuru()
     {

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grade;
+use Excel;
 use App\Models\User;
+use App\Models\Grade;
+use App\Exports\ExportKelas;
 use Illuminate\Http\Request;
 
 class KelasCmsController extends Controller
@@ -101,5 +103,10 @@ class KelasCmsController extends Controller
         Grade::destroy($kela->id);
 
         return redirect()->route('kelas.index')->with('success', "Data Kelas Berhasil Dihapus");
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExportKelas, 'Daftar-Kelas.xlsx');
     }
 }

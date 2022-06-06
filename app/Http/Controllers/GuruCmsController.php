@@ -62,9 +62,11 @@ class GuruCmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $guru)
     {
-        //
+        return view('admins.guru.show', [
+            'guru' => $guru
+        ]);
     }
 
     /**
