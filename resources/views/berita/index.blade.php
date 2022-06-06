@@ -16,7 +16,7 @@
                         @endif
                         <div class="input-group mb-4">
                             <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request('search') }}">
-                            <button class="btn btn-danger" type="submit"><i class="fas fa-fw fa-search"></i></button>
+                            <button class="btn btn-success" type="submit"><i class="fas fa-fw fa-search"></i></button>
                         </div>
                     </form>
                 </div>

@@ -24,6 +24,19 @@
                 <a href="/berita" class="text-decoration-none">Kembali...</a>
             </h6>
         </div>
+        @if(Auth::guard('user')->user() && Auth::guard('user')->user()->level === "admin" )
+        <div class="col-md-3">
+            <a href="/admin/crud/berita/{{ $post->slug }}/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
+
+            <form action="{{ route('berita.destroy', ['beritum' => $post->slug]) }}" method="POST" class="d-inline">
+                @method('delete')
+                @csrf
+                <button class="btn btn-sm btn-danger"
+                    onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
+                        aria-hidden="true"></i></button>
+            </form>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

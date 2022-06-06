@@ -33,8 +33,9 @@
                                 <th>Deposit</th>
                                 {{-- <th>Nama Admin</th> --}}
                                 <th>Jenis Pembayaran</th>
-                                <th>Metode Tabungan</th>
+                                <th>Verifikator</th>
                                 {{-- <th>Gambar</th> --}}
+                                <th>Tanggal</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -47,9 +48,10 @@
                                 @if ($tabungan->payment)
                                     <td>{{ $tabungan->payment->name }}</td>
                                 @else
-                                    <td>{{ $tabungan->user->name }}</td>
+                                    <td>{{ $tabungan->method->name }}</td>
                                 @endif
-                                <td>{{ $tabungan->method->name }}</td>
+                                <td>{{ $tabungan->user->name }}</td>
+                                <td>{{ date('d-m-Y', strtotime($tabungan->created_at)) }}</td>
                                 {{-- <td>{{ $tabungan->image }}</td> --}}
                                 <td>
                                     <a href="/admin/crud/tabungan/{{ $tabungan->id }}/edit"

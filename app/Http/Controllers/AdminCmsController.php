@@ -131,7 +131,7 @@ class AdminCmsController extends Controller
 
     public function exportExcel()
     {
-        return Excel::download(new UserExport, 'data_admin_dan_user.xlsx');
+        return Excel::download(new UserExport, 'data_admin_dan_user.csv');
     }
 
     public function importExcel(Request $request)

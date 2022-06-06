@@ -30,7 +30,7 @@
       </div>
       @endif
 
-        <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
+        <h1 class="h3 mb-3 fw-normal text-center">Silahkan Login</h1>
         <form action="{{ route('postLogin') }}" method="POST"> 
           @csrf
           <div class="form-floating">
@@ -47,7 +47,7 @@
             <label for="Password">Password</label>
           </div>
     
-          <button class="w-100 btn btn-lg btn-danger" type="submit">Login</button>
+          <button class="w-100 btn btn-lg btn-success" type="submit">Login</button>
         </form>
     </div>
   </div>

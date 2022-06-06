@@ -14,10 +14,11 @@ class SavingFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => $this->faker->numberBetween(1, 10),
             'student_id' => $this->faker->numberBetween(1, 60),
             'method_id' => $this->faker->randomElement(['1', '2']),
-            'status' => $this->faker->randomElement(['1', '0', NULL]),
-            'payment_id' => $this->faker->numberBetween(1, 3),
+            'status' => $this->faker->randomElement(['1', '0']),
+            'payment_id' => $this->faker->numberBetween(0, 3),
             'image' => 'saving-images/duit.JPEG',
             'created_at' => $this->faker->dateTimeThisYear(),
             'deposit' => $this->faker->numerify('##000')

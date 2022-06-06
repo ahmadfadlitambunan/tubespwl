@@ -29,6 +29,10 @@ use App\Http\Controllers\DashboardGuruInputController;
 |
 */
 
+Route::get('/', function(){
+    return redirect()->route('login');
+});
+
 // login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('postlogin', [LoginController::class, 'logManage'])->name('postLogin');
