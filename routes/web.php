@@ -16,6 +16,7 @@ use App\Http\Controllers\StudentProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\SiswaCmsController;
+use App\Http\Controllers\PembayaranCmsController;
 use App\Http\Controllers\DashboardGuruInputController;
 
 /*
@@ -39,7 +40,7 @@ Route::post('postlogin', [LoginController::class, 'logManage'])->name('postLogin
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // routing khusus untuk admin
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:user','ceklevel:admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:user', 'ceklevel:admin']], function () {
     Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.index');
 
     // CMS
@@ -51,7 +52,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user','ceklevel:admin'
     Route::resource('/crud/kelas', KelasCmsController::class);
     Route::resource('/crud/murid', SiswaCmsController::class);
     Route::resource('/crud/kategori', KategoriCmsController::class);
-    
+    Route::resource('/crud/pembayaran', PembayaranCmsController::class);
+
     // virifikasi tabungan
     Route::get('/tabungan/verif', [TabunganCmsController::class, 'needverif'])->name('saving.needverif');
     Route::put('/tabungan/verif/{saving}', [TabunganCmsController::class, 'verify'])->name('saving.verify');
@@ -85,7 +87,7 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:student']], function (
     Route::get('/ubah-password', [StudentProfileController::class, 'reset'])->name('siswa.reset');
     Route::post('/ubah-password', [StudentProfileController::class, 'updatePass'])->name('siswa.updatePass');
     Route::put('/profile/{siswa}', [StudentProfileController::class, 'store'])->name('siswa.update');
-    
+
     // menabung dan history
     Route::get('/menabung', [StudentController::class, 'menabung'])->name('menabung');
     Route::post('/create', [StudentController::class, 'create'])->name('siswa.create');
@@ -110,7 +112,7 @@ Route::group(['prefix' => 'guru', 'middleware' => ['auth:user', 'ceklevel:guru']
     Route::get('/export/siswa-class', [DashboardGuruInputController::class, 'exportExcel'])->name('exportSiswaKls');
 });
 
-Route::group(['middleware' => ['auth:user,student']], function() {
+Route::group(['middleware' => ['auth:user,student']], function () {
     Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
     Route::get('/berita/{post:slug}', [BeritaController::class, 'show'])->name('berita.tampil');
 });

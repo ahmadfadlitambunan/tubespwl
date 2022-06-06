@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="row">
-    <div class="col-xl-16 col-md-16 ">
+    <div class="col-xl-12 col-md-12 ">
         @if (session()->has('success'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -13,10 +13,11 @@
         @endif
         <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
-                <h6 class="mr-auto font-weight-bold text-primary">Daftar Wali Kelas / Guru</h6>
-                <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2"><i
-                        class="fas fw fa-user-plus"></i></a>
-                <a href="{{ route('guru.export') }}" class="btn btn-outline-success">Export</a>
+                <h6 class="mr-auto font-weight-bold text-primary">Daftar Pembayaran</h6>
+                <a href="{{ route('pembayaran.create') }}" class="btn btn-primary mx-2">Buat Pembayaran</a>
+                <form method="GET" onsubmit="return confirm ('Download Pdf Daftar Posting?')" action="pdf.php?pdf=2">
+                    <button type='submit' name='btnpost' class='btn btn-outline-primary'>Report</button>
+                </form>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -24,30 +25,25 @@
                         <thead style="text-align: center">
                             <tr>
                                 <th>No</th>
-                                <th>NIP</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Nomor Telepon</th>
-                                <th>Gender</th>
-                                <th>Aksi</th>
+                                <th>Nama Pembayaran</th>
+                                <th>A.N</th>
+                                <th>Nomor Rekening / Nomor Akun</th>
+                                <th>Gambar</th>
                             </tr>
                         </thead>
                         <tbody style="text-align: center">
-                            @foreach ($teachers as $guru)
+                            @foreach ($payments as $pembayaran)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $guru->nip }}</td>
-                                <td>{{ $guru->name }}</td>
-                                <td>{{ $guru->email }}</td>
-                                <td>{{ $guru->phone_no }}</td>
-                                <td>{{ $guru->gender }}</td>
+                                <td>{{ $pembayaran->name }}</td>
+                                <td>{{ $pembayaran->a_n }}</td>
+                                <td>{{ $pembayaran->account_no }}</td>
                                 <td>
-                                    <a href="/admin/crud/guru/{{ $guru->id }}" class="btn btn-sm btn-success"><i
-                                            class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <a href="/admin/crud/guru/{{ $guru->id }}/edit" class="btn btn-sm btn-warning"><i
-                                            class="fa fa-edit" aria-hidden="true"></i></a>
+                                    <a href="/admin/crud/pembayaran/{{ $pembayaran->id }}/edit"
+                                        class="btn btn-sm btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
 
-                                    <form action="/admin/crud/guru/{{ $guru->id }}" method="POST" class="d-inline">
+                                    <form action="/admin/crud/pembayaran/{{ $pembayaran->id }}" method="POST"
+                                        class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-sm btn-danger"
