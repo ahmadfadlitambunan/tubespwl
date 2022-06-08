@@ -132,7 +132,7 @@ class BeritaCmsController extends Controller
 
     public function destroy(Post $beritum)
     {
-        User::destroy($beritum->id);
+        Post::destroy($beritum->id);
 
         return redirect()->route('berita.index')->with('success', "Postingan Berhasil Dihapus");
     }

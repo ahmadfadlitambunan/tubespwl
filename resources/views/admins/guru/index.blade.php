@@ -14,9 +14,17 @@
         <div class="card shadow mb-8">
             <div class="card-header py-3 d-flex flex-row align-items-center">
                 <h6 class="mr-auto font-weight-bold text-primary">Daftar Wali Kelas / Guru</h6>
-                <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2"><i
-                        class="fas fw fa-user-plus"></i></a>
-                <a href="{{ route('guru.export') }}" class="btn btn-outline-success">Export</a>
+                <a href="{{ route('guru.create') }}" class="btn btn-primary mx-2"><i class="fas fw fa-user-plus"></i></a>
+                <div class="dropdown">
+                    <button class="btn btn-outline-success" data-toggle="dropdown">Report<i class="fas fw fa-caret-down ml-2"></i></button>
+                    <div class="dropdown-menu mt-2">
+                        <a href="{{ route('guru.exportX') }}" class="dropdown-item">Export Xlsx</a>
+                        <a href="{{ route('guru.exportC') }}" class="dropdown-item">Export Csv</a>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#importCsv">
+                    importCsv
+                </button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -51,7 +59,7 @@
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
+                                            onclick="return confirm('Semua data yang berelasi dengan ini akan ikut terhapus, Anda Yakin?')"><i class="fa fa-trash"
                                                 aria-hidden="true"></i></button>
                                     </form>
                                 </td>
@@ -61,6 +69,37 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Import Excel -->
+<div class="modal fade" id="importCsv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import File</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('guru.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Pilih file yang ingin di-import!</label>
+                            <input type="file" id="formFile" name="file">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

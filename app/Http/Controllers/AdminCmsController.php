@@ -133,17 +133,4 @@ class AdminCmsController extends Controller
     {
         return Excel::download(new UserExport, 'data_admin_dan_user.csv');
     }
-
-    public function importExcel(Request $request)
-    {
-        $data = $request->file('file');
-
-        $namaFile = $data->getClientOriginalName();
-
-        $data->move('UserData', $namaFile);
-
-        Excel::import(new UserImport, \public_path('/UserData/' . $namaFile));
-
-        return redirect()->route('admins.index')->with('success', "Data berhasil di-import");
-    }
 }

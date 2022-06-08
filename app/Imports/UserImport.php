@@ -21,7 +21,7 @@ class UserImport implements ToModel
             'gender' => $row[3],
             'phone_no' => $row[4],
             'email' => $row[5],
-            'level' => $row[7],
+            'level' => 'guru',
             'image' => $row[8],
         ]);
     }

@@ -59,12 +59,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user', 'ceklevel:admin
     Route::put('/tabungan/verif/{saving}', [TabunganCmsController::class, 'verify'])->name('saving.verify');
 
     // import csv
-    Route::post('/import/admin', [AdminCmsController::class, 'importExcel'])->name('user.import');
+    Route::post('/import/guru', [GuruCmsController::class, 'importExcel'])->name('guru.import');
     Route::post('/import/siswa', [SiswaCmsController::class, 'importCsv'])->name('murid.import');
 
     // export
     Route::get('/export/admin', [AdminCmsController::class, 'exportExcel'])->name('user.export');
-    Route::get('/export/guru', [GuruCmsController::class, 'exportExcel'])->name('guru.export');
+    Route::get('/export/guru-xlsx', [GuruCmsController::class, 'exportExcel'])->name('guru.exportX');
+    Route::get('/export/guru-csv', [GuruCmsController::class, 'exportCsv'])->name('guru.exportC');
     Route::get('/export/kelas', [KelasCmsController::class, 'exportExcel'])->name('kelas.export');
     Route::get('/export/siswa-xlsx', [SiswaCmsController::class, 'exportExcel'])->name('murid.exportXlsx');
     Route::get('/export/siswa-csv', [SiswaCmsController::class, 'exportCsv'])->name('murid.exportCsv');

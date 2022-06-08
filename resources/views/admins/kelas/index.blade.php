@@ -43,7 +43,7 @@
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
+                                            onclick="return confirm('Semua data yang berelasi dengan ini akan ikut terhapus, Anda Yakin?')"><i class="fa fa-trash"
                                                 aria-hidden="true"></i></button>
                                     </form>
                                 </td>

@@ -22,10 +22,10 @@
                         <a href="{{ route('murid.exportXlsx') }}" class="dropdown-item">Export Xlsx</a>
                         <a href="{{ route('murid.exportCsv') }}" class="dropdown-item">Export Csv</a>
                     </div>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#importCsv">
-                        importCsv
-                    </button>
                 </div>
+                <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#importCsv">
+                    importCsv
+                </button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -58,7 +58,7 @@
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
+                                            onclick="return confirm('Semua data yang berelasi dengan ini akan ikut terhapus, Anda Yakin?')"><i class="fa fa-trash"
                                                 aria-hidden="true"></i></button>
                                     </form>
                                 </td>

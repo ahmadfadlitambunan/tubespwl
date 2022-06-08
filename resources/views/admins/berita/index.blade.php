@@ -15,7 +15,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center">
-                <h6 class="mr-auto font-weight-bold text-primary">Daftar berita</h6>
+                <h6 class="mr-auto font-weight-bold text-primary">Daftar Berita</h6>
                 <a href="{{ route('berita.create') }}" class="btn btn-primary mr-2"><i class="fas fw fa-plus"></i></a>
             </div>
             <div class="card-body">

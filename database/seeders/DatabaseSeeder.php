@@ -20,19 +20,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
-        Student::factory(60)->create();
-        Saving::factory(30)->create();
+        User::factory(6)->create();
 
+        
+        
         // Seeder Method Nabung
         Method::create([
             'name' => 'Manual',
         ]);
-
+        
         Method::create([
             'name' => 'Transfer',
         ]);
-
+        
         Payment::create([
             'name' => 'Gopay',
             'a_n' => 'Ahmad Fadli Tambunan',
@@ -44,53 +44,48 @@ class DatabaseSeeder extends Seeder
             'a_n' => 'Bang Tito',
             'account_no' => '1713561564',
         ]);
-
+        
         Payment::create([
             'name' => 'BRI',
             'a_n' => 'Bang Gihon',
             'account_no' => '844648464',
         ]);
-
+        
         Category::create([
             'name' => 'Kursus',
         ]);
-
+        
         Category::create([
             'name' => 'Workshop',
         ]);
-
+        
         Category::create([
             'name' => 'Sosial',
         ]);
-
+        
         Category::create([
             'name' => 'Lomba'
         ]);
-
+        
         Category::create([
             'name' => 'Beasiswa'
         ]);
-
-
-
-
-
-
+        
         Grade::create([
             'name' => 'Kelas 1',
             'user_id'=> 1
         ]);
-
+        
         Grade::create([
             'name' => 'Kelas 2',
             'user_id'=> 2
         ]);
-
+        
         Grade::create([
             'name' => 'Kelas 3',
             'user_id'=> 3
         ]);
-
+        
         Grade::create([
             'name' => 'Kelas 4',
             'user_id'=> 4
@@ -103,5 +98,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Kelas 6',
             'user_id'=> 6
         ]);
+        
+        Student::factory(30)->create();
+        Saving::factory(60)->create();
     }
 }

@@ -20,9 +20,6 @@
                 <a href="{{ route('admins.create') }}" class="btn btn-primary mr-2"><i
                         class="fas fw fa-user-plus"></i></a>
                 <a href="{{ route('user.export') }}" class="btn btn-outline-success mx-2">Export</a>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#importExcel">
-                    Import
-                </button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -44,11 +41,13 @@
                                 <td>{{ $admin->nip }}</td>
                                 <td>{{ $admin->name }}</td>
                                 <td>{{ $admin->email }}</td>
-                                <td>{{ $admin->image }}</td>
+                                <td><img src="{{ asset('storage/'. $admin->image)  }}" alt="" srcset="" width="100px" height="100px"></td>
                                 <td>
                                     <a href="/admin/crud/admins/{{ $admin->id }}" class="btn btn-sm btn-success"><i
                                             class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <a href="/admin/crud/admins/{{ $admin->id }}/edit" class="btn btn-sm btn-warning"><i
+
+                                    {{-- Fitur Edit dan Hapus Admin dimatiin, karena jika admin dapat dihapus tidak ada otoritas tertinggi di applikasi ini --}}
+                                    {{-- <a href="/admin/crud/admins/{{  $admin->id }}/edit" class="btn btn-sm btn-warning"><i
                                             class="fa fa-edit" aria-hidden="true"></i></a>
 
                                     <form action="/admin/crud/admins/{{ $admin->id }}" method="POST" class="d-inline">
@@ -57,7 +56,7 @@
                                         <button class="btn btn-sm btn-danger"
                                             onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
                                                 aria-hidden="true"></i></button>
-                                    </form>
+                                    </form> --}}
                                 </td>
                             </tr>
                             @endforeach
@@ -68,36 +67,4 @@
         </div>
     </div>
 </div>
-
-<!-- Modal Import Excel -->
-<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Import File</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('user.import') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Pilih file yang ingin di-import!</label>
-                            <input type="file" id="formFile" name="file">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 @endsection

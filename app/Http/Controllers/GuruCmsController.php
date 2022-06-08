@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Models\User;
 use App\Exports\GuruExport;
+use App\Exports\UserExport;
+use App\Imports\UserImport;
 use Illuminate\Http\Request;
-use Excel;
 
 
 class GuruCmsController extends Controller
@@ -139,5 +141,23 @@ class GuruCmsController extends Controller
     public function exportExcel()
     {
         return Excel::download(new GuruExport, "Data-Guru.xlsx");
+    }
+
+    public function exportCsv()
+    {
+        return Excel::download(new UserExport, "Data-Guru.csv");
+    }
+
+    public function importExcel(Request $request)
+    {
+        $data = $request->file('file');
+
+        $namaFile = $data->getClientOriginalName();
+
+        $data->move('UserData', $namaFile);
+
+        Excel::import(new UserImport, \public_path('/UserData/' . $namaFile));
+
+        return redirect()->route('guru.index')->with('success', "Data berhasil di-import");
     }
 }

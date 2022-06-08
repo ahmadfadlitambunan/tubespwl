@@ -97,9 +97,11 @@ class TabunganCmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Saving $tabungan)
     {
-        //
+        Saving::destroy($tabungan->id);
+
+        return redirect()->route('tabungan.index')->with('success', "Data tabungan telah berhasil dihapus");
     }
 
     public function needverif()

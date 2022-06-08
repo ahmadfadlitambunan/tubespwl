@@ -23,8 +23,7 @@ class StudentController extends Controller
             ->where('status', '1')
             ->sum('deposit');
 
-        $total = Saving::whereYear('created_at', date('Y'))
-            ->where('user_id', Auth::guard('student')->user()->id)
+        $total = Saving::where('user_id', Auth::guard('student')->user()->id)
             ->where('status', '1')
             ->sum('deposit');
 
@@ -32,7 +31,6 @@ class StudentController extends Controller
             ->where('user_id', Auth::guard('student')->user()->id)
             ->where('status', '1')
             ->sum('deposit');
-
 
             
         return view('students.index', [

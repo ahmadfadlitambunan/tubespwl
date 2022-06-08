@@ -27,18 +27,19 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        {{-- Menu Edit dah Hapus ditiadakan, untuk memberikan otoritas tertinggi kepada admin --}}
+                        {{-- <div class="col-md-4">
                             <a href="/admin/crud/admins/{{ $admin->id }}/edit" class="btn btn-sm btn-warning"><i
                                 class="fa fa-edit" aria-hidden="true"></i></a>
 
-                        <form action="/admin/crud/admins/{{ $admin->id }}" method="POST" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="btn btn-sm btn-danger"
-                                onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
-                                    aria-hidden="true"></i></button>
-                        </form>
-                        </div>
+                            <form action="/admin/crud/admins/{{ $admin->id }}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-trash"
+                                        aria-hidden="true"></i></button>
+                            </form>
+                        </div> --}}
 
                     </div>
 
